@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://cmhp4chgk5bty"]
+[gd_scene load_steps=3 format=3 uid="uid://cmhp4chgk5bty"]
 
 [ext_resource type="Texture2D" uid="uid://cle5ylvhiappk" path="res://assets/ship_L.png" id="1_fxrsx"]
+[ext_resource type="Script" path="res://player.gd" id="1_xmwdj"]
 
 [node name="Player" type="Area2D"]
+script = ExtResource("1_xmwdj")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
