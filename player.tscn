@@ -3,7 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://cle5ylvhiappk" path="res://assets/ship_L.png" id="1_fxrsx"]
 [ext_resource type="Script" path="res://player.gd" id="1_xmwdj"]
 
-[node name="Player" type="Area2D"]
+[node name="Player" type="CharacterBody2D"]
+position = Vector2(121, 59)
 script = ExtResource("1_xmwdj")
 metadata/_edit_group_ = true
 
@@ -11,4 +12,4 @@ metadata/_edit_group_ = true
 texture = ExtResource("1_fxrsx")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(0, -23, 8, 0, 24, 16, 16, 24, 8, 24, 8, 16, -8, 16, -8, 24, -16, 24, -24, 16, -8, 0, 0, -23)
+polygon = PackedVector2Array(-7, -1, 0, -24, 8, -1, 24, 16, 16, 24, 8, 24, 8, 16, -7, 16, -7, 24, -17, 24, -24, 16)
