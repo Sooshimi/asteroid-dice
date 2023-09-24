@@ -1,3 +1,12 @@
-[gd_scene format=3 uid="uid://cmhp4chgk5bty"]
+[gd_scene load_steps=2 format=3 uid="uid://cmhp4chgk5bty"]
+
+[ext_resource type="Texture2D" uid="uid://cle5ylvhiappk" path="res://assets/ship_L.png" id="1_fxrsx"]
 
 [node name="Player" type="Area2D"]
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_fxrsx")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(0, -23, 8, 0, 24, 16, 16, 24, 8, 24, 8, 16, -8, 16, -8, 24, -16, 24, -24, 16, -8, 0, 0, -23)
