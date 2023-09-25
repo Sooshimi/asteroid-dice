@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+@export var laser_scene: PackedScene
 @export var speed = 300
 @export var turn_speed = 300
 
@@ -17,6 +18,9 @@ func _process(delta):
 		rotate(deg_to_rad(-turn_speed * delta))
 	if Input.is_action_pressed("turn_right"):
 		rotate(deg_to_rad(turn_speed * delta))
+	if Input.is_action_pressed("shoot"):
+		var laser = laser_scene.instantiate()
+		add_child(laser)
 	
 	if velocity.y == 0:
 		velocity = velocity.move_toward(Vector2.ZERO, 3)
