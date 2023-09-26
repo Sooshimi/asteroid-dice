@@ -4,6 +4,8 @@ extends Node
 @export var laser_speed = 1000
 
 @export var meteor_scene: PackedScene
+@export var min_meteor_speed = 100.0
+@export var max_meteor_speed = 200.0
 
 var score
 
@@ -39,13 +41,13 @@ func _on_meteor_timer_timeout():
 	# Get the MeteorSpawnLocation node
 	var meteor_spawn_location = get_node("MeteorPath/MeteorSpawnLocation")
 	
-	# Set location of meteor spawning along MeteorPath
+	# Set location of MeteorSpawnLocation node along MeteorPath
 	meteor_spawn_location.progress_ratio = randf()
 	
 	# Set the direction of the meteor perpendicular to the path
 	var direction = meteor_spawn_location.rotation + PI/2
 	
-	# Set meteor's position to the chosen random location
+	# Set meteor's position to the chosen random spawn location
 	meteor.position = meteor_spawn_location.position
 	
 	# Add randomness to the meteor direction (within a conical range)
@@ -53,7 +55,7 @@ func _on_meteor_timer_timeout():
 	meteor.rotation = direction
 	
 	# Choose meteor velocity
-	var velocity = Vector2(randf_range(100.0, 150.0), 0.0)
+	var velocity = Vector2(randf_range(min_meteor_speed, max_meteor_speed), 0.0)
 	meteor.linear_velocity = velocity.rotated(direction)
 	
 	add_child(meteor)
