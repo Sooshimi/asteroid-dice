@@ -16,15 +16,10 @@ func get_input():
 	# Get forward velocity and add to it every frame, speeds up on key hold, and limit speed
 	velocity += Input.get_axis("", "forward") * -transform.y * speed
 	velocity = velocity.limit_length(max_speed)
-
+	
 	# Get rotation direction (outputs - or +)
 	rotation_direction = Input.get_axis("turn_left", "turn_right")
-	
-#	# Instantiate and create laser when shoot button is clicked
-#	if Input.is_action_pressed("shoot"):
-#		var laser = laser_scene.instantiate()
-#		add_child(laser)
-	
+
 func _process(delta):
 	# Decelerates ship when forward key is no longer pressed
 	if input_vector.y == 0:

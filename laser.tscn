@@ -8,6 +8,7 @@ radius = 4.0
 height = 38.0
 
 [node name="Laser" type="Area2D"]
+position = Vector2(2.08165e-12, 2.08165e-12)
 script = ExtResource("1_v2rd8")
 metadata/_edit_group_ = true
 
