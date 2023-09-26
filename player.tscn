@@ -1,13 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://cmhp4chgk5bty"]
+[gd_scene load_steps=3 format=3 uid="uid://cmhp4chgk5bty"]
 
 [ext_resource type="Texture2D" uid="uid://cle5ylvhiappk" path="res://assets/ship_L.png" id="1_fxrsx"]
 [ext_resource type="Script" path="res://player.gd" id="1_xmwdj"]
-[ext_resource type="PackedScene" uid="uid://da8ksrewxvin7" path="res://laser.tscn" id="4_jcjf6"]
 
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(121, 59)
 script = ExtResource("1_xmwdj")
-laser_scene = ExtResource("4_jcjf6")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -15,6 +13,3 @@ texture = ExtResource("1_fxrsx")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-7, -1, 0, -24, 8, -1, 24, 16, 16, 24, 8, 24, 8, 16, -7, 16, -7, 24, -17, 24, -24, 16)
-
-[node name="LaserPoint" type="Marker2D" parent="."]
-position = Vector2(0, -24.005)

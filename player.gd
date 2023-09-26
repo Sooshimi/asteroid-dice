@@ -1,6 +1,5 @@
 extends CharacterBody2D
 
-@export var laser_scene: PackedScene
 @export var speed = 10
 @export var max_speed = 300
 @export var rotation_speed = 5
@@ -21,10 +20,10 @@ func get_input():
 	# Get rotation direction (outputs - or +)
 	rotation_direction = Input.get_axis("turn_left", "turn_right")
 	
-	# Instantiate and create laser when shoot button is clicked
-	if Input.is_action_pressed("shoot"):
-		var laser = laser_scene.instantiate()
-		add_child(laser)
+#	# Instantiate and create laser when shoot button is clicked
+#	if Input.is_action_pressed("shoot"):
+#		var laser = laser_scene.instantiate()
+#		add_child(laser)
 	
 func _process(delta):
 	# Decelerates ship when forward key is no longer pressed
