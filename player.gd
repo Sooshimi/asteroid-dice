@@ -1,29 +1,36 @@
 extends CharacterBody2D
 
 @export var laser_scene: PackedScene
-@export var speed = 300
-@export var turn_speed = 300
+@export var speed = 10
+@export var max_speed = 300
+@export var rotation_speed = 5
+var rotation_direction = 0
 
-# Called when the node enters the scene tree for the first time.
+# Get input vector to decelerate ship when vector's y is 0
+var input_vector = Vector2(0, Input.get_axis("", "forward"))
+
 func _ready():
 	pass # Replace with function body.
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	var velocity = Vector2.ZERO
+func get_input():
 	
-	if Input.is_action_pressed("forward"):
-		velocity.y -= 1
-	if Input.is_action_pressed("turn_left"):
-		rotate(deg_to_rad(-turn_speed * delta))
-	if Input.is_action_pressed("turn_right"):
-		rotate(deg_to_rad(turn_speed * delta))
+	# Get forward velocity and add to it every frame, speeds up on key hold, and limit speed
+	velocity += Input.get_axis("", "forward") * -transform.y * speed
+	velocity = velocity.limit_length(max_speed)
+
+	# Get rotation direction (outputs - or +)
+	rotation_direction = Input.get_axis("turn_left", "turn_right")
+	
+	# Instantiate and create laser when shoot button is clicked
 	if Input.is_action_pressed("shoot"):
 		var laser = laser_scene.instantiate()
 		add_child(laser)
 	
-	if velocity.y == 0:
+func _process(delta):
+	# Decelerates ship when forward key is no longer pressed
+	if input_vector.y == 0:
 		velocity = velocity.move_toward(Vector2.ZERO, 3)
 	
-	position += velocity.rotated(rotation) * speed * delta
-	
+	get_input()
+	rotation += rotation_direction * rotation_speed * delta
+	move_and_slide()
