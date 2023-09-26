@@ -1,7 +1,5 @@
-extends Area2D
+extends RigidBody2D
 
-@export var speed = 1000
-var vector = Vector2.ZERO
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -9,8 +7,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	vector.y -= 1
-	global_position += vector.rotated(rotation) * speed * delta
+	pass
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	queue_free()

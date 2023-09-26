@@ -1,12 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://le2jdemvngim"]
+[gd_scene load_steps=6 format=3 uid="uid://le2jdemvngim"]
 
 [ext_resource type="PackedScene" uid="uid://cmhp4chgk5bty" path="res://player.tscn" id="1_fx3vb"]
 [ext_resource type="Script" path="res://main.gd" id="1_nvjsi"]
 [ext_resource type="PackedScene" uid="uid://da8ksrewxvin7" path="res://laser.tscn" id="2_6qfo2"]
+[ext_resource type="PackedScene" uid="uid://bfo8difbrh55q" path="res://meteor_l_2.tscn" id="3_usoxn"]
+
+[sub_resource type="Curve2D" id="Curve2D_5rl1v"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 800, 0, 0, 0, 0, 0, 800, 800, 0, 0, 0, 0, 0, 800, 0, 0, 0, 0, 0, 0)
+}
+point_count = 5
 
 [node name="Main" type="Node"]
 script = ExtResource("1_nvjsi")
 laser_scene = ExtResource("2_6qfo2")
+meteor_scene = ExtResource("3_usoxn")
 
 [node name="Player" parent="." instance=ExtResource("1_fx3vb")]
 position = Vector2(405, 379)
@@ -14,3 +22,17 @@ position = Vector2(405, 379)
 [node name="ShootCooldownTimer" type="Timer" parent="."]
 wait_time = 0.2
 one_shot = true
+
+[node name="MeteorTimer" type="Timer" parent="."]
+wait_time = 1.5
+
+[node name="StartPosition" type="Marker2D" parent="."]
+position = Vector2(400, 400)
+
+[node name="MeteorPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_5rl1v")
+
+[node name="MeteorSpawnLocation" type="PathFollow2D" parent="MeteorPath"]
+
+[connection signal="hit" from="Player" to="." method="game_over"]
+[connection signal="timeout" from="MeteorTimer" to="." method="_on_meteor_timer_timeout"]
