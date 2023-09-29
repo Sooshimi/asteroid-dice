@@ -15,7 +15,7 @@ func _ready():
 
 func get_input():
 	# Get forward velocity and add to it every frame, speeds up on key hold, and limit speed
-	velocity += Input.get_axis("", "forward") * -transform.y * speed
+	velocity += Input.get_action_strength("forward") * -transform.y * speed
 	velocity = velocity.limit_length(max_speed)
 	
 	# Get rotation direction (outputs - or +)

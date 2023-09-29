@@ -20,7 +20,6 @@ func _process(delta):
 	if Input.is_action_pressed("shoot") && $ShootCooldownTimer.is_stopped():
 		fire_laser()
 
-
 func fire_laser():
 	var laser = laser_scene.instantiate()
 	laser.position = $Player.position
