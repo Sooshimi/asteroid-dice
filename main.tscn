@@ -20,7 +20,7 @@ meteor_scene = ExtResource("3_usoxn")
 position = Vector2(405, 379)
 
 [node name="ShootCooldownTimer" type="Timer" parent="."]
-wait_time = 0.2
+wait_time = 0.3
 one_shot = true
 
 [node name="MeteorTimer" type="Timer" parent="."]

@@ -27,6 +27,7 @@ func fire_laser():
 	$ShootCooldownTimer.start()
 
 func game_over():
+	$ShootCooldownTimer.stop()
 	$MeteorTimer.stop()
 
 func new_game():
