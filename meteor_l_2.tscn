@@ -10,6 +10,7 @@ radius = 47.0425
 collision_mask = 15
 gravity_scale = 0.0
 script = ExtResource("1_1jj5r")
+metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_23ehl")
