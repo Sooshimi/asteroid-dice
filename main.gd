@@ -15,9 +15,11 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	$HUD.update_score(score)
 	# Instantiate and create laser when shoot button is clicked
 	if Input.is_action_pressed("shoot") && $ShootCooldownTimer.is_stopped():
 		fire_laser()
+
 
 func fire_laser():
 	var laser = laser_scene.instantiate()

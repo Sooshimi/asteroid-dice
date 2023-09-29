@@ -2,7 +2,6 @@ extends Area2D
 
 @export var speed = 1000
 var vector = Vector2.ZERO
-
 var score
 
 # Called when the node enters the scene tree for the first time.
@@ -19,5 +18,8 @@ func _on_visible_on_screen_notifier_2d_screen_exited():
 
 func _on_body_entered(body):
 	queue_free()
-	body.queue_free()
-	get_parent().score += 1
+	body.hp -= 1
+	
+	if body.hp == 0:
+		get_parent().score += 1
+		body.queue_free()

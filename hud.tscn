@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://bjqqro1pksc61"]
+
+[ext_resource type="Script" path="res://hud.gd" id="1_sck6s"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_nhfwi"]
+font_size = 32
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_sck6s")
+
+[node name="ScoreLabel" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 26.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "0"
+label_settings = SubResource("LabelSettings_nhfwi")
+horizontal_alignment = 1

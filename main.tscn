@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://le2jdemvngim"]
+[gd_scene load_steps=7 format=3 uid="uid://le2jdemvngim"]
 
 [ext_resource type="PackedScene" uid="uid://cmhp4chgk5bty" path="res://player.tscn" id="1_fx3vb"]
 [ext_resource type="Script" path="res://main.gd" id="1_nvjsi"]
 [ext_resource type="PackedScene" uid="uid://da8ksrewxvin7" path="res://laser.tscn" id="2_6qfo2"]
 [ext_resource type="PackedScene" uid="uid://bfo8difbrh55q" path="res://meteor_l_2.tscn" id="3_usoxn"]
+[ext_resource type="PackedScene" uid="uid://bjqqro1pksc61" path="res://hud.tscn" id="5_ut0wp"]
 
 [sub_resource type="Curve2D" id="Curve2D_5rl1v"]
 _data = {
@@ -33,6 +34,8 @@ position = Vector2(400, 400)
 curve = SubResource("Curve2D_5rl1v")
 
 [node name="MeteorSpawnLocation" type="PathFollow2D" parent="MeteorPath"]
+
+[node name="HUD" parent="." instance=ExtResource("5_ut0wp")]
 
 [connection signal="hit" from="Player" to="." method="game_over"]
 [connection signal="timeout" from="MeteorTimer" to="." method="_on_meteor_timer_timeout"]
