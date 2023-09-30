@@ -1,7 +1,6 @@
 extends Node
 
 @export var laser_scene: PackedScene
-@export var laser_speed = 1000
 
 @export var meteor_scene: PackedScene
 @export var min_meteor_speed = 100.0
@@ -18,9 +17,9 @@ func _process(delta):
 	$HUD.update_score(score)
 	# Instantiate and create laser when shoot button is clicked
 	if Input.is_action_pressed("shoot") && $ShootCooldownTimer.is_stopped():
-		fire_laser()
+		fire_laser(delta)
 
-func fire_laser():
+func fire_laser(delta):
 	var laser = laser_scene.instantiate()
 	laser.position = $Player.position
 	laser.rotation = $Player.rotation
