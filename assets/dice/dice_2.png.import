@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c2jqushhbarmn"
-path="res://.godot/imported/meteor_detailedLarge 2.png-3c2d4cd651a9ce52140839fd7bb626cf.ctex"
+uid="uid://dm5q2xycc6fbm"
+path="res://.godot/imported/dice_2.png-92b12fcb0882711e343ae1b93edbdeda.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/meteor_detailedLarge 2.png"
-dest_files=["res://.godot/imported/meteor_detailedLarge 2.png-3c2d4cd651a9ce52140839fd7bb626cf.ctex"]
+source_file="res://assets/dice/dice_2.png"
+dest_files=["res://.godot/imported/dice_2.png-92b12fcb0882711e343ae1b93edbdeda.ctex"]
 
 [params]
 

@@ -8,7 +8,7 @@ var rotation_direction = 0
 signal hit
 
 # Get input vector to decelerate ship when vector's y is 0
-var input_vector = Vector2(0, Input.get_axis("", "forward"))
+var input_vector = Vector2(0, Input.get_action_strength("forward"))
 
 func _ready():
 	pass # Replace with function body.

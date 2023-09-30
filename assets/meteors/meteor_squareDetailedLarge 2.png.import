@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c18rxrkxxqimh"
-path="res://.godot/imported/meteor_squareDetailedLarge.png-96c40dd08c3ad0f2d5185397d8edb101.ctex"
+uid="uid://bigvmcrnmty8q"
+path="res://.godot/imported/meteor_squareDetailedLarge 2.png-dd1d415697423dd458f26c2501ef0064.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/meteor_squareDetailedLarge.png"
-dest_files=["res://.godot/imported/meteor_squareDetailedLarge.png-96c40dd08c3ad0f2d5185397d8edb101.ctex"]
+source_file="res://assets/meteors/meteor_squareDetailedLarge 2.png"
+dest_files=["res://.godot/imported/meteor_squareDetailedLarge 2.png-dd1d415697423dd458f26c2501ef0064.ctex"]
 
 [params]
 
