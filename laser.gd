@@ -1,6 +1,6 @@
 extends Area2D
 
-@export var speed = 800
+@export var speed = 200
 var vector = Vector2.ZERO
 var score
 

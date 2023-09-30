@@ -28,7 +28,7 @@ func _process(delta):
 	
 	get_input()
 	rotation += rotation_direction * rotation_speed * delta
-	var collision = move_and_collide(velocity * delta,false,0.00)
+	var collision = move_and_collide(velocity * delta, false, 0.00)
 	
 	# If player hits something, destroy it
 	if collision:
