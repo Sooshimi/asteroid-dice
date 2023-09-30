@@ -1,10 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://le2jdemvngim"]
+[gd_scene load_steps=9 format=3 uid="uid://le2jdemvngim"]
 
 [ext_resource type="PackedScene" uid="uid://cmhp4chgk5bty" path="res://player.tscn" id="1_fx3vb"]
 [ext_resource type="Script" path="res://main.gd" id="1_nvjsi"]
 [ext_resource type="PackedScene" uid="uid://da8ksrewxvin7" path="res://laser.tscn" id="2_6qfo2"]
 [ext_resource type="PackedScene" uid="uid://bfo8difbrh55q" path="res://meteor_l_2.tscn" id="3_usoxn"]
+[ext_resource type="PackedScene" uid="uid://dh6u2tcnu02yx" path="res://dice.tscn" id="4_1r4wt"]
 [ext_resource type="PackedScene" uid="uid://bjqqro1pksc61" path="res://hud.tscn" id="5_ut0wp"]
+[ext_resource type="PackedScene" uid="uid://dqmtv28633ltf" path="res://wall.tscn" id="7_vkox2"]
 
 [sub_resource type="Curve2D" id="Curve2D_5rl1v"]
 _data = {
@@ -16,6 +18,9 @@ point_count = 5
 script = ExtResource("1_nvjsi")
 laser_scene = ExtResource("2_6qfo2")
 meteor_scene = ExtResource("3_usoxn")
+
+[node name="Dice" parent="." instance=ExtResource("4_1r4wt")]
+position = Vector2(204, 207)
 
 [node name="Player" parent="." instance=ExtResource("1_fx3vb")]
 position = Vector2(405, 379)
@@ -36,6 +41,20 @@ curve = SubResource("Curve2D_5rl1v")
 [node name="MeteorSpawnLocation" type="PathFollow2D" parent="MeteorPath"]
 
 [node name="HUD" parent="." instance=ExtResource("5_ut0wp")]
+
+[node name="Wall" parent="." instance=ExtResource("7_vkox2")]
+position = Vector2(414, 806)
+rotation = 1.5708
+
+[node name="Wall2" parent="." instance=ExtResource("7_vkox2")]
+position = Vector2(400, -7)
+rotation = 1.5708
+
+[node name="Wall3" parent="." instance=ExtResource("7_vkox2")]
+position = Vector2(-7, 394)
+
+[node name="Wall4" parent="." instance=ExtResource("7_vkox2")]
+position = Vector2(804, 415)
 
 [connection signal="hit" from="Player" to="." method="game_over"]
 [connection signal="timeout" from="MeteorTimer" to="." method="_on_meteor_timer_timeout"]

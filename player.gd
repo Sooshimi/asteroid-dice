@@ -31,6 +31,7 @@ func _process(delta):
 	var collision = move_and_collide(velocity * delta, false, 0.00)
 	
 	# If player hits something, destroy it
-	if collision:
+	if collision && not "Wall" in collision.get_collider().name:
+		print(collision.get_collider().name)
 		hit.emit()
 		hide()

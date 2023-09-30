@@ -18,8 +18,11 @@ func _on_visible_on_screen_notifier_2d_screen_exited():
 
 func _on_body_entered(body):
 	queue_free()
-	body.hp -= 1
-	
-	if body.hp == 0:
-		get_parent().score += 1
-		body.queue_free()
+
+	if body.name == "Dice":
+		body.roll()
+	else:
+		body.hp -= 1
+		if body.hp == 0:
+			get_parent().score += 1
+			body.queue_free()
