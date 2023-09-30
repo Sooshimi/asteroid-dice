@@ -4,6 +4,7 @@ extends CharacterBody2D
 @export var max_speed = 300
 @export var rotation_speed = 5
 var rotation_direction = 0
+var screen_size
 
 signal hit
 
@@ -11,7 +12,8 @@ signal hit
 var input_vector = Vector2(0, Input.get_action_strength("forward"))
 
 func _ready():
-	pass # Replace with function body.
+	screen_size = get_viewport_rect().size
+	print(screen_size)
 
 func get_input():
 	# Get forward velocity and add to it every frame, speeds up on key hold, and limit speed
@@ -31,6 +33,13 @@ func _process(delta):
 	var collision = move_and_collide(velocity * delta, false, 0.00)
 	
 	# If player hits something, destroy it
-	if collision && not "Wall" in collision.get_collider().name:
+	if collision:
 		hit.emit()
 		hide()
+	
+	screen_wrap()
+
+func screen_wrap():
+	position.x = wrapf(position.x, 0, screen_size.x)
+	position.y = wrapf(position.y, 0, screen_size.y)
+	

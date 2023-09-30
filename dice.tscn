@@ -8,10 +8,12 @@ size = Vector2(64, 64)
 
 [node name="Dice" type="RigidBody2D"]
 collision_layer = 8
-collision_mask = 23
+collision_mask = 7
+mass = 0.5
 gravity_scale = 2.66454e-15
 max_contacts_reported = 1
 contact_monitor = true
+linear_velocity = Vector2(2.08165e-12, 2.08165e-12)
 script = ExtResource("1_7qal0")
 metadata/_edit_group_ = true
 
