@@ -32,6 +32,5 @@ func _process(delta):
 	
 	# If player hits something, destroy it
 	if collision && not "Wall" in collision.get_collider().name:
-		print(collision.get_collider().name)
 		hit.emit()
 		hide()

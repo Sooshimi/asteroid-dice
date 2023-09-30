@@ -18,7 +18,9 @@ func _process(delta):
 	pass
 
 func roll():
-	$Sprite2D.texture = dice_sides[randi() % dice_sides.size()]
+	for i in 5:
+		await $RollAnimationTimer.timeout
+		$Sprite2D.texture = dice_sides[randi() % dice_sides.size()]
 
 func _on_body_entered(body):
 	if not "Wall" in body.name:

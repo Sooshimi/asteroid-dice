@@ -22,4 +22,8 @@ texture = ExtResource("2_6iphx")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_jv6lb")
 
+[node name="RollAnimationTimer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
