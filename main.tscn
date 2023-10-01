@@ -18,6 +18,14 @@ script = ExtResource("1_nvjsi")
 laser_scene = ExtResource("2_6qfo2")
 meteor_scene = ExtResource("3_usoxn")
 
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0823529, 0.0823529, 0.0823529, 1)
+
 [node name="Dice" parent="." instance=ExtResource("4_1r4wt")]
 position = Vector2(204, 207)
 
