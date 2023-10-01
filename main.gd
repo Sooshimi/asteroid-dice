@@ -12,9 +12,9 @@ func _ready():
 
 func _process(delta):
 	if $Player.is_visible_in_tree() && Input.is_action_pressed("shoot") && $ShootCooldownTimer.is_stopped():
-		fire_laser(delta)
+		fire_laser()
 
-func fire_laser(delta):
+func fire_laser():
 	var laser = laser_scene.instantiate()
 	laser.position = $Player.position
 	laser.rotation = $Player.rotation
