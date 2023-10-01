@@ -19,8 +19,8 @@ func _integrate_forces(state):
 
 func roll():
 	for i in 5:
-		await $RollAnimationTimer.timeout
 		$Sprite2D.texture = dice_sides[randi() % dice_sides.size()]
+		await $RollAnimationTimer.timeout
 
 func _on_body_entered(body):
 	roll()
