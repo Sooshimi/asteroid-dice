@@ -13,7 +13,7 @@ mass = 0.5
 gravity_scale = 2.66454e-15
 max_contacts_reported = 1
 contact_monitor = true
-linear_velocity = Vector2(2.08165e-12, 2.08165e-12)
+linear_velocity = Vector2(200, 100)
 script = ExtResource("1_7qal0")
 metadata/_edit_group_ = true
 
