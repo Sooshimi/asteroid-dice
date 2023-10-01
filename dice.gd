@@ -10,7 +10,6 @@ var side_six = load("res://assets/dice/dice_6.png")
 var screen_size
 var dice_sides = [side_one, side_two, side_three, side_four, side_five, side_six]
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	screen_size = get_viewport_rect().size
 

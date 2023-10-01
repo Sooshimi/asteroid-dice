@@ -4,11 +4,10 @@ extends Area2D
 var vector = Vector2.ZERO
 var score
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _ready():
+	pass
+
 func _process(delta):
 	vector.y -= 1
 	position += vector.rotated(rotation) * speed * delta
