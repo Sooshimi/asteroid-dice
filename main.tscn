@@ -43,3 +43,4 @@ curve = SubResource("Curve2D_5rl1v")
 
 [connection signal="hit" from="Player" to="." method="game_over"]
 [connection signal="timeout" from="MeteorTimer" to="." method="_on_meteor_timer_timeout"]
+[connection signal="new_game" from="HUD" to="." method="_on_hud_new_game"]

@@ -9,6 +9,7 @@ var score
 
 func _ready():
 	new_game()
+	$HUD.hide_new_game_button()
 
 func _process(_delta):
 	if $Player.is_visible_in_tree() && Input.is_action_pressed("shoot") && $ShootCooldownTimer.is_stopped():
@@ -22,13 +23,19 @@ func fire_laser():
 	$ShootCooldownTimer.start()
 
 func game_over():
+	$HUD.show_new_game_button()
 	$ShootCooldownTimer.stop()
 	$MeteorTimer.stop()
 
 func new_game():
 	score = 0
+	$HUD.update_score(score)
+	$HUD.hide_new_game_button()
+	get_tree().call_group("meteors", "queue_free")
 	$MeteorTimer.start()
 	$Player.global_position = $StartPosition.position
+	$Player.velocity = Vector2.ZERO
+	$Player.show()
 
 func _on_meteor_timer_timeout():
 	# Create new instance of meteor
@@ -55,3 +62,6 @@ func _on_meteor_timer_timeout():
 	meteor.linear_velocity = velocity.rotated(direction)
 	
 	add_child(meteor)
+
+func _on_hud_new_game():
+	new_game()

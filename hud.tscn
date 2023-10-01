@@ -1,9 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://bjqqro1pksc61"]
+[gd_scene load_steps=5 format=3 uid="uid://bjqqro1pksc61"]
 
 [ext_resource type="Script" path="res://hud.gd" id="1_sck6s"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_nhfwi"]
 font_size = 32
+
+[sub_resource type="InputEventAction" id="InputEventAction_f51lh"]
+action = &"shoot"
+
+[sub_resource type="Shortcut" id="Shortcut_ip8f4"]
+events = [SubResource("InputEventAction_f51lh")]
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_sck6s")
@@ -21,3 +27,20 @@ size_flags_vertical = 0
 text = "0"
 label_settings = SubResource("LabelSettings_nhfwi")
 horizontal_alignment = 1
+
+[node name="NewGameButton" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -46.5
+offset_top = -15.5
+offset_right = 46.5
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+shortcut = SubResource("Shortcut_ip8f4")
+text = "New Game"
+
+[connection signal="pressed" from="NewGameButton" to="." method="_on_new_game_button_pressed"]
