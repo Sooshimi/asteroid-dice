@@ -10,7 +10,7 @@ var score
 func _ready():
 	new_game()
 
-func _process(delta):
+func _process(_delta):
 	if $Player.is_visible_in_tree() && Input.is_action_pressed("shoot") && $ShootCooldownTimer.is_stopped():
 		fire_laser()
 
