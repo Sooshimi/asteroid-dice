@@ -5,7 +5,6 @@ extends CharacterBody2D
 @export var rotation_speed = 5
 var rotation_direction = 0
 var screen_size
-
 signal hit
 
 # Get input vector to decelerate ship when vector's y is 0

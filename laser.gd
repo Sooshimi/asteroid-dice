@@ -4,7 +4,6 @@ extends Area2D
 var vector = Vector2.ZERO
 var score
 
-
 func _ready():
 	pass
 
@@ -24,4 +23,5 @@ func _on_body_entered(body):
 		body.hp -= 1
 		if body.hp == 0:
 			get_parent().score += 1
+			get_parent().get_node("HUD").update_score(get_parent().score)
 			body.queue_free()
