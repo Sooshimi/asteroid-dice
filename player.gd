@@ -13,7 +13,6 @@ var input_vector = Vector2(0, Input.get_action_strength("forward"))
 
 func _ready():
 	screen_size = get_viewport_rect().size
-	print(screen_size)
 
 func get_input():
 	# Get forward velocity and add to it every frame, speeds up on key hold, and limit speed

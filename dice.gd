@@ -16,7 +16,6 @@ func _ready():
 
 func _integrate_forces(state):
 	screen_wrap(state)
-	
 
 func roll():
 	for i in 5:
@@ -25,7 +24,8 @@ func roll():
 
 func _on_body_entered(body):
 	roll()
-	body.queue_free()
+	if body.name != "Player":
+		body.queue_free()
 
 func screen_wrap(state):
 	state.transform.origin.x = wrapf(position.x, 0, screen_size.x)

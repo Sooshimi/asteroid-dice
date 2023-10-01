@@ -16,7 +16,7 @@ func _ready():
 func _process(delta):
 	$HUD.update_score(score)
 	# Instantiate and create laser when shoot button is clicked
-	if Input.is_action_pressed("shoot") && $ShootCooldownTimer.is_stopped():
+	if $Player.is_visible_in_tree() && Input.is_action_pressed("shoot") && $ShootCooldownTimer.is_stopped():
 		fire_laser(delta)
 
 func fire_laser(delta):
