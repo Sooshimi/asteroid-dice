@@ -40,6 +40,9 @@ func new_game():
 	$Player.global_position = $StartPosition.position
 	$Player.velocity = Vector2.ZERO
 	$Player.show()
+	multiple_meteor_rotation_speed = 1
+	multiply_meteor_velocity = 1
+	$MeteorTimer.wait_time = 1.5
 
 func _on_meteor_timer_timeout():
 	# Create new instance of meteor
