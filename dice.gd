@@ -12,6 +12,9 @@ var rolled_side
 var screen_size
 var dice_sides = [side_one, side_two, side_three, side_four, side_five, side_six]
 
+signal rolled_five
+signal rolled_non_five
+
 func _ready():
 	screen_size = get_viewport_rect().size
 
@@ -27,6 +30,17 @@ func roll():
 	
 	if rolled_side == 6:
 		get_tree().call_group("meteors", "queue_free")
+		rolled_non_five.emit()
+	if rolled_side == 5:
+		rolled_five.emit()
+	if rolled_side == 4:
+		rolled_non_five.emit()
+	if rolled_side == 3:
+		rolled_non_five.emit()
+	if rolled_side == 2:
+		rolled_non_five.emit()
+	if rolled_side == 1:
+		rolled_non_five.emit()
 
 func _on_body_entered(body):
 	roll()

@@ -7,6 +7,10 @@ extends Node
 
 var score
 
+# Initial meteor rotation speed and velocity on game start
+var multiple_meteor_rotation_speed = 1
+var multiply_meteor_velocity = 1
+
 func _ready():
 	new_game()
 	$HUD.hide_new_game_button()
@@ -57,13 +61,23 @@ func _on_meteor_timer_timeout():
 	direction += randf_range(-PI/4, PI/4)
 	
 	# Add randomness to the meteor rotation and rotation speed
-	meteor.angular_velocity = randf_range(-PI/2, PI/2)
+	meteor.angular_velocity = randf_range(-PI/2, PI/2) * multiple_meteor_rotation_speed
 	
 	# Choose meteor velocity
 	var velocity = Vector2(randf_range(min_meteor_speed, max_meteor_speed), 0.0)
-	meteor.linear_velocity = velocity.rotated(direction)
+	meteor.linear_velocity = velocity.rotated(direction) * multiply_meteor_velocity
 	
 	add_child(meteor)
 
 func _on_hud_new_game():
 	new_game()
+
+func _on_dice_rolled_five():
+	multiple_meteor_rotation_speed = 20
+	multiply_meteor_velocity = 2
+	$MeteorTimer.wait_time = 0.5
+
+func _on_dice_rolled_non_five():
+	multiple_meteor_rotation_speed = 1
+	multiply_meteor_velocity = 1
+	$MeteorTimer.wait_time = 1.5

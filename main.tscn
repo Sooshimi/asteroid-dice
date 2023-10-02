@@ -28,6 +28,7 @@ color = Color(0.0823529, 0.0823529, 0.0823529, 1)
 
 [node name="Dice" parent="." instance=ExtResource("4_1r4wt")]
 position = Vector2(204, 207)
+mass = 0.5
 
 [node name="Player" parent="." instance=ExtResource("1_fx3vb")]
 position = Vector2(405, 379)
@@ -49,6 +50,8 @@ curve = SubResource("Curve2D_5rl1v")
 
 [node name="HUD" parent="." instance=ExtResource("5_ut0wp")]
 
+[connection signal="rolled_five" from="Dice" to="." method="_on_dice_rolled_five"]
+[connection signal="rolled_non_five" from="Dice" to="." method="_on_dice_rolled_non_five"]
 [connection signal="hit" from="Player" to="." method="game_over"]
 [connection signal="timeout" from="MeteorTimer" to="." method="_on_meteor_timer_timeout"]
 [connection signal="new_game" from="HUD" to="." method="_on_hud_new_game"]
