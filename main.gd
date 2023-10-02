@@ -55,7 +55,9 @@ func _on_meteor_timer_timeout():
 	
 	# Add randomness to the meteor direction (within a conical range)
 	direction += randf_range(-PI/4, PI/4)
-	meteor.rotation = direction
+	
+	# Add randomness to the meteor rotation and rotation speed
+	meteor.angular_velocity = randf_range(-PI/2, PI/2)
 	
 	# Choose meteor velocity
 	var velocity = Vector2(randf_range(min_meteor_speed, max_meteor_speed), 0.0)
