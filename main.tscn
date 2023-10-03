@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://le2jdemvngim"]
+[gd_scene load_steps=9 format=3 uid="uid://le2jdemvngim"]
 
 [ext_resource type="PackedScene" uid="uid://cmhp4chgk5bty" path="res://player.tscn" id="1_fx3vb"]
 [ext_resource type="Script" path="res://main.gd" id="1_nvjsi"]
@@ -12,6 +12,9 @@ _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 800, 0, 0, 0, 0, 0, 800, 800, 0, 0, 0, 0, 0, 800, 0, 0, 0, 0, 0, 0)
 }
 point_count = 5
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oafe6"]
+radius = 324.076
 
 [node name="Main" type="Node"]
 script = ExtResource("1_nvjsi")
@@ -47,6 +50,17 @@ position = Vector2(400, 400)
 curve = SubResource("Curve2D_5rl1v")
 
 [node name="MeteorSpawnLocation" type="PathFollow2D" parent="MeteorPath"]
+metadata/_edit_group_ = true
+
+[node name="MeteorSafeSpawnLoc" type="PathFollow2D" parent="MeteorPath"]
+metadata/_edit_group_ = true
+
+[node name="Area2D" type="Area2D" parent="MeteorPath/MeteorSafeSpawnLoc"]
+collision_layer = 4
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MeteorPath/MeteorSafeSpawnLoc/Area2D"]
+shape = SubResource("CircleShape2D_oafe6")
 
 [node name="HUD" parent="." instance=ExtResource("5_ut0wp")]
 
@@ -54,4 +68,6 @@ curve = SubResource("Curve2D_5rl1v")
 [connection signal="rolled_non_five" from="Dice" to="." method="_on_dice_rolled_non_five"]
 [connection signal="hit" from="Player" to="." method="game_over"]
 [connection signal="timeout" from="MeteorTimer" to="." method="_on_meteor_timer_timeout"]
+[connection signal="body_entered" from="MeteorPath/MeteorSafeSpawnLoc/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="MeteorPath/MeteorSafeSpawnLoc/Area2D" to="." method="_on_area_2d_body_exited"]
 [connection signal="new_game" from="HUD" to="." method="_on_hud_new_game"]

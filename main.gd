@@ -10,6 +10,7 @@ var score
 # Initial meteor rotation speed and velocity on game start
 var multiple_meteor_rotation_speed = 1
 var multiply_meteor_velocity = 1
+var meteor_safe_spawn
 
 func _ready():
 	new_game()
@@ -49,10 +50,13 @@ func _on_meteor_timer_timeout():
 	var meteor = meteor_scene.instantiate()
 	
 	# Get the MeteorSpawnLocation node
-	var meteor_spawn_location = get_node("MeteorPath/MeteorSpawnLocation")
+	var meteor_spawn_location = $MeteorPath/MeteorSpawnLocation
+	var meteor_safe_spawn_location = $MeteorPath/MeteorSafeSpawnLoc
 	
 	# Set location of MeteorSpawnLocation node along MeteorPath
 	meteor_spawn_location.progress_ratio = randf()
+	
+	meteor_safe_spawn_location.progress_ratio = meteor_spawn_location.progress_ratio
 	
 	# Set the direction of the meteor perpendicular to the path
 	var direction = meteor_spawn_location.rotation + PI/2
@@ -84,3 +88,10 @@ func _on_dice_rolled_non_five():
 	multiple_meteor_rotation_speed = 1
 	multiply_meteor_velocity = 1
 	$MeteorTimer.wait_time = 1.5
+
+func _on_area_2d_body_entered(body):
+	meteor_safe_spawn = false
+	$MeteorPath/MeteorSafeSpawnLoc.progress_ratio = randf()
+
+func _on_area_2d_body_exited(body):
+	meteor_safe_spawn = true
