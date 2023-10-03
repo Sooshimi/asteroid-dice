@@ -27,7 +27,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.0823529, 0.0823529, 0.0823529, 1)
+color = Color(0.305882, 0.305882, 0.305882, 1)
 
 [node name="Dice" parent="." instance=ExtResource("4_1r4wt")]
 position = Vector2(204, 207)
@@ -65,7 +65,9 @@ shape = SubResource("CircleShape2D_oafe6")
 [node name="HUD" parent="." instance=ExtResource("5_ut0wp")]
 
 [connection signal="rolled_five" from="Dice" to="." method="_on_dice_rolled_five"]
+[connection signal="rolled_four" from="Dice" to="Player" method="_on_dice_rolled_four"]
 [connection signal="rolled_non_five" from="Dice" to="." method="_on_dice_rolled_non_five"]
+[connection signal="rolled_non_four" from="Dice" to="Player" method="_on_dice_rolled_non_four"]
 [connection signal="hit" from="Player" to="." method="game_over"]
 [connection signal="timeout" from="MeteorTimer" to="." method="_on_meteor_timer_timeout"]
 [connection signal="body_entered" from="MeteorPath/MeteorSafeSpawnLoc/Area2D" to="." method="_on_area_2d_body_entered"]

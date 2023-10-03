@@ -5,6 +5,7 @@ extends CharacterBody2D
 @export var rotation_speed = 5
 var rotation_direction = 0
 var screen_size
+var rolled_four
 signal hit
 
 # Get input vector to decelerate ship when vector's y is 0
@@ -19,7 +20,10 @@ func get_input():
 	velocity = velocity.limit_length(max_speed)
 	
 	# Get rotation direction (outputs - or +)
-	rotation_direction = Input.get_axis("turn_left", "turn_right")
+	if rolled_four:
+		rotation_direction = Input.get_axis("turn_right", "turn_left")
+	else:
+		rotation_direction = Input.get_axis("turn_left", "turn_right")
 
 func _process(delta):
 	# Decelerates ship when forward key is no longer pressed
@@ -40,4 +44,9 @@ func _process(delta):
 func screen_wrap():
 	position.x = wrapf(position.x, 0, screen_size.x)
 	position.y = wrapf(position.y, 0, screen_size.y)
-	
+
+func _on_dice_rolled_four():
+	rolled_four = true
+
+func _on_dice_rolled_non_four():
+	rolled_four = false
