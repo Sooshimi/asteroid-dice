@@ -27,7 +27,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.305882, 0.305882, 0.305882, 1)
+color = Color(0.0666667, 0.0666667, 0.0666667, 1)
 
 [node name="Dice" parent="." instance=ExtResource("4_1r4wt")]
 position = Vector2(204, 207)

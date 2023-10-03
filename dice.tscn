@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://co0h807d4q1b1" path="res://assets/dice/dice_1.png" id="2_6iphx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jv6lb"]
-size = Vector2(64, 64)
+size = Vector2(23, 23)
 
 [node name="Dice" type="RigidBody2D"]
 collision_layer = 8
@@ -18,10 +18,12 @@ script = ExtResource("1_7qal0")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(4, 4)
+position = Vector2(4.76837e-07, 4.76837e-07)
+scale = Vector2(3, 3)
 texture = ExtResource("2_6iphx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_jv6lb")
 
 [node name="RollAnimationTimer" type="Timer" parent="."]
