@@ -57,8 +57,11 @@ func roll():
 
 func _on_body_entered(body):
 	roll()
+	
 	if body.name != "Player":
 		body.queue_free()
+		get_parent().score -= 1
+		get_parent().get_node("HUD").update_score(get_parent().score)
 
 func screen_wrap(state):
 	state.transform.origin.x = wrapf(position.x, 0, screen_size.x)
