@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cmhp4chgk5bty"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_xmwdj"]
-[ext_resource type="Texture2D" uid="uid://dh7rjf7nlkvnu" path="res://assets/ship_outline.png" id="2_gfqea"]
+[ext_resource type="Texture2D" uid="uid://dh7rjf7nlkvnu" path="res://assets/ship_outline.png" id="2_tl5xd"]
 
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(121, 59)
@@ -10,7 +10,10 @@ script = ExtResource("1_xmwdj")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_gfqea")
+texture = ExtResource("2_tl5xd")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-12, 2, 0, -26, 11, 2, 21, 5, 24, 16, 7, 17, 3, 23, -4, 23, -8, 17, -24, 16, -22, 5)
+
+[node name="LaserPoint" type="Marker2D" parent="."]
+position = Vector2(-0.42, -27.19)
