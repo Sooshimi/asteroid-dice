@@ -19,6 +19,7 @@ var score : int
 @onready var player := $Player
 @onready var shoot_cooldown_timer := $ShootCooldownTimer
 @onready var start_position := $StartPosition
+@onready var laser_point := $Player/LaserPoint
 
 func _ready():
 	new_game()
@@ -30,8 +31,8 @@ func _process(_delta):
 
 func fire_laser():
 	var laser := laser_scene.instantiate()
-	laser.position = player.position
-	laser.rotation = player.rotation
+	laser.position = laser_point.global_position
+	laser.rotation = laser_point.global_rotation
 	add_child(laser)
 	shoot_cooldown_timer.start()
 
@@ -41,17 +42,22 @@ func game_over():
 	meteor_timer.stop()
 
 func new_game():
+	# Reset score
 	score = 0
 	hud.update_score(score)
 	hud.hide_new_game_button()
+	
+	# Destroy all meteors and reset meteors back to default values
 	get_tree().call_group("meteors", "queue_free")
 	meteor_timer.start()
-	player.global_position = start_position.position
-	player.velocity = Vector2.ZERO
-	player.show()
 	multiple_meteor_rotation_speed = 1
 	multiply_meteor_velocity = 1
 	meteor_timer.wait_time = 1.5
+	
+	# Reset player
+	player.global_position = start_position.position
+	player.velocity = Vector2.ZERO
+	player.show()
 
 func _on_meteor_timer_timeout():
 	# Create new instance of meteor
