@@ -3,7 +3,7 @@ extends CharacterBody2D
 @export var speed := 10
 @export var max_speed := 300
 @export var rotation_speed := 5
-var rotation_direction := 0
+var rotation_direction := 0.0
 var screen_size : Vector2
 var rolled_four : bool
 signal hit

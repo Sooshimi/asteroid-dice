@@ -1,5 +1,7 @@
 extends Area2D
 
+@onready var main := get_parent()
+@onready var hud := main.get_node("HUD")
 @export var speed := 200
 var vector := Vector2.ZERO
 var score : int
@@ -22,6 +24,6 @@ func _on_body_entered(body):
 	else:
 		body.hp -= 1
 		if body.hp == 0:
-			get_parent().score += 1
-			get_parent().get_node("HUD").update_score(get_parent().score)
+			main.score += 1
+			hud.update_score(main.score)
 			body.queue_free()

@@ -3,7 +3,7 @@ extends CanvasLayer
 signal new_game
 
 @onready var score_label := $ScoreLabel
-@onready var new_game_button := $NewGameButton
+@onready var new_game_button = $NewGameButton
 
 func _ready():
 	new_game_button.hide()

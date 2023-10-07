@@ -94,9 +94,9 @@ func _on_dice_rolled_non_five():
 	multiply_meteor_velocity = 1
 	meteor_timer.wait_time = 1.5
 
-func _on_area_2d_body_entered(body):
+func _on_area_2d_body_entered(_body):
 	meteor_safe_spawn = false
 	meteor_safe_spawn_location.progress_ratio = randf()
 
-func _on_area_2d_body_exited(body):
+func _on_area_2d_body_exited(_body):
 	meteor_safe_spawn = true
