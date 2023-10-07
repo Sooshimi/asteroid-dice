@@ -1,12 +1,12 @@
 extends CharacterBody2D
 
+@onready var animation_player := $AnimationPlayer
 @export var speed := 10
 @export var max_speed := 300
 @export var rotation_speed := 5
 var rotation_direction := 0.0
 var screen_size : Vector2
 var rolled_four : bool
-var is_moving : bool
 signal hit
 
 func _ready():
@@ -18,14 +18,14 @@ func get_input():
 	velocity = velocity.limit_length(max_speed)
 	
 	if velocity.y == 0:
-		$AnimationPlayer.play("idle")
+		animation_player.play("idle")
 	elif Input.is_action_just_pressed("forward"):
-		$AnimationPlayer.play("flame_up")
+		animation_player.play("flame_up")
 	elif Input.is_action_just_released("forward"):
-		is_moving = false
-		$AnimationPlayer.play("flame_down")
+		animation_player.play("flame_down")
 	
 	# Get rotation direction (outputs - or +)
+	# If side-four is rolled, then invert controls
 	if rolled_four:
 		rotation_direction = Input.get_axis("turn_right", "turn_left")
 	else:
