@@ -1,9 +1,9 @@
 extends Node
 
-@export var laser_scene: PackedScene
-@export var meteor_scene: PackedScene
-@export var min_meteor_speed := 100.0
-@export var max_meteor_speed := 200.0
+@export var laser_scene : PackedScene
+@export var meteor_scene : PackedScene
+@export var min_meteor_speed := 150.0
+@export var max_meteor_speed := 250.0
 
 # Initial meteor rotation speed and velocity on game start
 var multiple_meteor_rotation_speed := 1
@@ -69,6 +69,7 @@ func new_game():
 	multiple_meteor_rotation_speed = 1
 	multiply_meteor_velocity = 1
 	meteor_timer.wait_time = 1.5
+	rolled_two = false
 	
 	# Reset player
 	player.global_position = start_position.position

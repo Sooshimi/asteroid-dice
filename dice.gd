@@ -20,7 +20,7 @@ signal rolled_two
 signal rolled_non_two
 
 @onready var dice_sprite := $Sprite2D
-@onready var roll_animation_timer = $RollAnimationTimer
+@onready var roll_animation_timer := $RollAnimationTimer
 
 func _ready():
 	screen_size = get_viewport_rect().size
