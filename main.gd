@@ -16,39 +16,43 @@ var direction : float
 @onready var meteor_timer := $MeteorTimer
 @onready var meteor_spawn_location := $MeteorPath/MeteorSpawnLocation
 @onready var meteor_safe_spawn_location := $MeteorPath/MeteorSafeSpawnLoc
+@onready var hud := $HUD
+@onready var player := $Player
+@onready var shoot_cooldown_timer := $ShootCooldownTimer
+@onready var start_position = $StartPosition
 
 func _ready():
 	new_game()
-	$HUD.hide_new_game_button()
+	hud.hide_new_game_button()
 
 func _process(_delta):
-	if $Player.is_visible_in_tree() && Input.is_action_pressed("shoot") && $ShootCooldownTimer.is_stopped():
+	if player.is_visible_in_tree() && Input.is_action_pressed("shoot") && shoot_cooldown_timer.is_stopped():
 		fire_laser()
 
 func fire_laser():
 	var laser := laser_scene.instantiate()
-	laser.position = $Player.position
-	laser.rotation = $Player.rotation
+	laser.position = player.position
+	laser.rotation = player.rotation
 	add_child(laser)
-	$ShootCooldownTimer.start()
+	shoot_cooldown_timer.start()
 
 func game_over():
-	$HUD.show_new_game_button()
-	$ShootCooldownTimer.stop()
-	$MeteorTimer.stop()
+	hud.show_new_game_button()
+	shoot_cooldown_timer.stop()
+	meteor_timer.stop()
 
 func new_game():
 	score = 0
-	$HUD.update_score(score)
-	$HUD.hide_new_game_button()
+	hud.update_score(score)
+	hud.hide_new_game_button()
 	get_tree().call_group("meteors", "queue_free")
-	$MeteorTimer.start()
-	$Player.global_position = $StartPosition.position
-	$Player.velocity = Vector2.ZERO
-	$Player.show()
+	meteor_timer.start()
+	player.global_position = start_position.position
+	player.velocity = Vector2.ZERO
+	player.show()
 	multiple_meteor_rotation_speed = 1
 	multiply_meteor_velocity = 1
-	$MeteorTimer.wait_time = 1.5
+	meteor_timer.wait_time = 1.5
 
 func _on_meteor_timer_timeout():
 	# Create new instance of meteor
