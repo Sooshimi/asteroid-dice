@@ -6,10 +6,8 @@ extends CharacterBody2D
 var rotation_direction := 0.0
 var screen_size : Vector2
 var rolled_four : bool
+var is_moving : bool
 signal hit
-
-# Get input vector to decelerate ship when vector's y is 0
-var input_vector := Vector2(0, Input.get_action_strength("forward"))
 
 func _ready():
 	screen_size = get_viewport_rect().size
@@ -24,6 +22,7 @@ func get_input():
 	elif Input.is_action_just_pressed("forward"):
 		$AnimationPlayer.play("flame_up")
 	elif Input.is_action_just_released("forward"):
+		is_moving = false
 		$AnimationPlayer.play("flame_down")
 	
 	# Get rotation direction (outputs - or +)
@@ -34,8 +33,7 @@ func get_input():
 
 func _process(delta):
 	# Decelerates ship when forward key is no longer pressed
-	if input_vector.y == 0:
-		velocity = velocity.move_toward(Vector2.ZERO, 3)
+	velocity = velocity.move_toward(Vector2.ZERO, 3)
 	
 	get_input()
 	

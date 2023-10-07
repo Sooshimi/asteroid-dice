@@ -5,13 +5,12 @@ extends Node
 @export var min_meteor_speed := 100.0
 @export var max_meteor_speed := 200.0
 
-var score : int
-
 # Initial meteor rotation speed and velocity on game start
 var multiple_meteor_rotation_speed := 1
 var multiply_meteor_velocity := 1
 var meteor_safe_spawn : bool
 var direction : float
+var score : int
 
 @onready var meteor_timer := $MeteorTimer
 @onready var meteor_spawn_location := $MeteorPath/MeteorSpawnLocation
