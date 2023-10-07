@@ -69,6 +69,8 @@ shape = SubResource("CircleShape2D_oafe6")
 [connection signal="rolled_four" from="Dice" to="Player" method="_on_dice_rolled_four"]
 [connection signal="rolled_non_five" from="Dice" to="." method="_on_dice_rolled_non_five"]
 [connection signal="rolled_non_four" from="Dice" to="Player" method="_on_dice_rolled_non_four"]
+[connection signal="rolled_non_two" from="Dice" to="." method="_on_dice_rolled_non_two"]
+[connection signal="rolled_two" from="Dice" to="." method="_on_dice_rolled_two"]
 [connection signal="hit" from="Player" to="." method="game_over"]
 [connection signal="timeout" from="MeteorTimer" to="." method="_on_meteor_timer_timeout"]
 [connection signal="body_entered" from="MeteorPath/MeteorSafeSpawnLoc/Area2D" to="." method="_on_area_2d_body_entered"]

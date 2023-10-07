@@ -99,6 +99,14 @@ polygon = PackedVector2Array(-12, 2, 0, -26, 11, 2, 21, 5, 24, 16, 7, 17, 3, 23,
 [node name="LaserPoint" type="Marker2D" parent="."]
 position = Vector2(-0.42, -40.31)
 
+[node name="LaserPointLeft" type="Marker2D" parent="."]
+position = Vector2(-16.73, -27.29)
+rotation = -0.523599
+
+[node name="LaserPointRight" type="Marker2D" parent="."]
+position = Vector2(15, -27.29)
+rotation = 0.523599
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_t00e2")

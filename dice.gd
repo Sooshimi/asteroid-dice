@@ -16,6 +16,8 @@ signal rolled_five
 signal rolled_non_five
 signal rolled_four
 signal rolled_non_four
+signal rolled_two
+signal rolled_non_two
 
 @onready var dice_sprite := $Sprite2D
 @onready var roll_animation_timer = $RollAnimationTimer
@@ -38,25 +40,31 @@ func roll():
 		get_tree().call_group("meteors", "queue_free")
 		rolled_non_five.emit()
 		rolled_non_four.emit()
+		rolled_non_two.emit()
 	if rolled_side == 5:
 		# Meteors on (a)steroids
 		rolled_five.emit()
 		rolled_non_four.emit()
+		rolled_non_two.emit()
 	if rolled_side == 4:
 		# Revert player controls
 		rolled_four.emit()
 		rolled_non_five.emit()
+		rolled_non_two.emit()
 	if rolled_side == 3:
 		rolled_non_five.emit()
 		rolled_non_four.emit()
+		rolled_non_two.emit()
 	if rolled_side == 2:
 		# More lasers
 		rolled_non_five.emit()
 		rolled_non_four.emit()
+		rolled_two.emit()
 	if rolled_side == 1:
 		# Default
 		rolled_non_five.emit()
 		rolled_non_four.emit()
+		rolled_non_two.emit()
 
 func _on_body_entered(body):
 	roll()

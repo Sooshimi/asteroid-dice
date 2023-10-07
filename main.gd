@@ -11,6 +11,7 @@ var multiply_meteor_velocity := 1
 var meteor_safe_spawn : bool
 var direction : float
 var score : int
+var rolled_two : bool
 
 @onready var meteor_timer := $MeteorTimer
 @onready var meteor_spawn_location := $MeteorPath/MeteorSpawnLocation
@@ -20,6 +21,8 @@ var score : int
 @onready var shoot_cooldown_timer := $ShootCooldownTimer
 @onready var start_position := $StartPosition
 @onready var laser_point := $Player/LaserPoint
+@onready var laser_point_left := $Player/LaserPointLeft
+@onready var laser_point_right := $Player/LaserPointRight
 
 func _ready():
 	new_game()
@@ -30,11 +33,24 @@ func _process(_delta):
 		fire_laser()
 
 func fire_laser():
+	shoot_cooldown_timer.start()
 	var laser := laser_scene.instantiate()
 	laser.position = laser_point.global_position
 	laser.rotation = laser_point.global_rotation
 	add_child(laser)
-	shoot_cooldown_timer.start()
+	
+	if rolled_two:
+		var laser_one := laser_scene.instantiate()
+		var laser_two := laser_scene.instantiate()
+		laser_one.position = laser_point_left.global_position
+		laser_one.rotation = laser_point_left.global_rotation
+		laser_two.position = laser_point_right.global_position
+		laser_two.rotation = laser_point_right.global_rotation
+		laser.speed = 100
+		laser_one.speed = 100
+		laser_two.speed = 100
+		add_child(laser_one)
+		add_child(laser_two)
 
 func game_over():
 	hud.show_new_game_button()
@@ -105,3 +121,9 @@ func _on_area_2d_body_entered(_body):
 
 func _on_area_2d_body_exited(_body):
 	meteor_safe_spawn = true
+
+func _on_dice_rolled_two():
+	rolled_two = true
+
+func _on_dice_rolled_non_two():
+	rolled_two = false
