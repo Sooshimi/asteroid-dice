@@ -1,21 +1,24 @@
 extends RigidBody2D
 
-var side_one = load("res://assets/dice/dice_1.png")
-var side_two = load("res://assets/dice/dice_2.png")
-var side_three = load("res://assets/dice/dice_3.png")
-var side_four = load("res://assets/dice/dice_4.png")
-var side_five = load("res://assets/dice/dice_5.png")
-var side_six = load("res://assets/dice/dice_6.png")
+var side_one := load("res://assets/dice/dice_1.png")
+var side_two := load("res://assets/dice/dice_2.png")
+var side_three := load("res://assets/dice/dice_3.png")
+var side_four := load("res://assets/dice/dice_4.png")
+var side_five := load("res://assets/dice/dice_5.png")
+var side_six := load("res://assets/dice/dice_6.png")
 
-var rolled_index
-var rolled_side
+var rolled_index : int
+var rolled_side : int
 var screen_size
-var dice_sides = [side_one, side_two, side_three, side_four, side_five, side_six]
+var dice_sides := [side_one, side_two, side_three, side_four, side_five, side_six]
 
 signal rolled_five
 signal rolled_non_five
 signal rolled_four
 signal rolled_non_four
+
+@onready var dice_sprite := $Sprite2D
+@onready var roll_animation_timer = $RollAnimationTimer
 
 func _ready():
 	screen_size = get_viewport_rect().size
@@ -27,8 +30,8 @@ func roll():
 	for i in 5:
 		rolled_index = randi() % dice_sides.size()
 		rolled_side = rolled_index + 1
-		$Sprite2D.texture = dice_sides[rolled_index]
-		await $RollAnimationTimer.timeout
+		dice_sprite.texture = dice_sides[rolled_index]
+		await roll_animation_timer.timeout
 	
 	if rolled_side == 6:
 		# All on-screen meteors get destroyed

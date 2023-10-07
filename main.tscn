@@ -32,7 +32,7 @@ color = Color(0.0666667, 0.0666667, 0.0666667, 1)
 [node name="Dice" parent="." instance=ExtResource("4_1r4wt")]
 position = Vector2(204, 207)
 mass = 0.5
-linear_velocity = Vector2(0, 0)
+linear_velocity = Vector2(100, 50)
 
 [node name="Player" parent="." instance=ExtResource("1_fx3vb")]
 position = Vector2(405, 379)

@@ -2,20 +2,23 @@ extends CanvasLayer
 
 signal new_game
 
+@onready var score_label = $ScoreLabel
+@onready var new_game_button = $NewGameButton
+
 func _ready():
-	$NewGameButton.hide()
+	new_game_button.hide()
 
 func _process(delta):
 	pass
 
 func update_score(score):
-	$ScoreLabel.text = str(score)
+	score_label.text = str(score)
 
 func hide_new_game_button():
-	$NewGameButton.hide()
+	new_game_button.hide()
 
 func show_new_game_button():
-	$NewGameButton.show()
+	new_game_button.show()
 
 func _on_new_game_button_pressed():
 	new_game.emit()

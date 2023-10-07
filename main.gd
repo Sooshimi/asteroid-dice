@@ -2,15 +2,20 @@ extends Node
 
 @export var laser_scene: PackedScene
 @export var meteor_scene: PackedScene
-@export var min_meteor_speed = 100.0
-@export var max_meteor_speed = 200.0
+@export var min_meteor_speed := 100.0
+@export var max_meteor_speed := 200.0
 
-var score
+var score : int
 
 # Initial meteor rotation speed and velocity on game start
-var multiple_meteor_rotation_speed = 1
-var multiply_meteor_velocity = 1
-var meteor_safe_spawn
+var multiple_meteor_rotation_speed := 1
+var multiply_meteor_velocity := 1
+var meteor_safe_spawn : bool
+var direction : float
+
+@onready var meteor_timer := $MeteorTimer
+@onready var meteor_spawn_location := $MeteorPath/MeteorSpawnLocation
+@onready var meteor_safe_spawn_location := $MeteorPath/MeteorSafeSpawnLoc
 
 func _ready():
 	new_game()
@@ -21,7 +26,7 @@ func _process(_delta):
 		fire_laser()
 
 func fire_laser():
-	var laser = laser_scene.instantiate()
+	var laser := laser_scene.instantiate()
 	laser.position = $Player.position
 	laser.rotation = $Player.rotation
 	add_child(laser)
@@ -47,11 +52,7 @@ func new_game():
 
 func _on_meteor_timer_timeout():
 	# Create new instance of meteor
-	var meteor = meteor_scene.instantiate()
-	
-	# Get the MeteorSpawnLocation node
-	var meteor_spawn_location = $MeteorPath/MeteorSpawnLocation
-	var meteor_safe_spawn_location = $MeteorPath/MeteorSafeSpawnLoc
+	var meteor := meteor_scene.instantiate()
 	
 	# Set location of MeteorSpawnLocation node along MeteorPath
 	meteor_spawn_location.progress_ratio = randf()
@@ -59,7 +60,7 @@ func _on_meteor_timer_timeout():
 	meteor_safe_spawn_location.progress_ratio = meteor_spawn_location.progress_ratio
 
 	# Set the direction of the meteor perpendicular to the path
-	var direction = meteor_safe_spawn_location.rotation + PI/2
+	direction = meteor_safe_spawn_location.rotation + PI/2
 	
 	# Set meteor's position to the chosen random spawn location
 	meteor.position = meteor_safe_spawn_location.position
@@ -82,16 +83,16 @@ func _on_hud_new_game():
 func _on_dice_rolled_five():
 	multiple_meteor_rotation_speed = 20
 	multiply_meteor_velocity = 2
-	$MeteorTimer.wait_time = 0.5
+	meteor_timer.wait_time = 0.5
 
 func _on_dice_rolled_non_five():
 	multiple_meteor_rotation_speed = 1
 	multiply_meteor_velocity = 1
-	$MeteorTimer.wait_time = 1.5
+	meteor_timer.wait_time = 1.5
 
 func _on_area_2d_body_entered(body):
 	meteor_safe_spawn = false
-	$MeteorPath/MeteorSafeSpawnLoc.progress_ratio = randf()
+	meteor_safe_spawn_location.progress_ratio = randf()
 
 func _on_area_2d_body_exited(body):
 	meteor_safe_spawn = true

@@ -1,8 +1,8 @@
 extends Area2D
 
-@export var speed = 200
-var vector = Vector2.ZERO
-var score
+@export var speed := 200
+var vector := Vector2.ZERO
+var score : int
 
 func _ready():
 	pass
