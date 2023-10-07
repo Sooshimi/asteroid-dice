@@ -1,7 +1,87 @@
-[gd_scene load_steps=3 format=3 uid="uid://cmhp4chgk5bty"]
+[gd_scene load_steps=17 format=3 uid="uid://cmhp4chgk5bty"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_xmwdj"]
-[ext_resource type="Texture2D" uid="uid://dh7rjf7nlkvnu" path="res://assets/ship_outline.png" id="2_tl5xd"]
+[ext_resource type="Texture2D" uid="uid://bdsnwanhq8e18" path="res://assets/ship FIRE1.png" id="2_6fof3"]
+[ext_resource type="Texture2D" uid="uid://lw4l61tv607o" path="res://assets/ship FIRE2.png" id="3_eosq1"]
+[ext_resource type="Texture2D" uid="uid://d1hlp4femq24h" path="res://assets/ship FIRE3.png" id="4_mar1y"]
+[ext_resource type="Texture2D" uid="uid://dhi46rn007nhc" path="res://assets/ship FIRE4.png" id="5_yaf5c"]
+[ext_resource type="Texture2D" uid="uid://eblpkmpr2118" path="res://assets/ship FIRE5.png" id="6_406iu"]
+[ext_resource type="Texture2D" uid="uid://qo5lso5vpwhh" path="res://assets/ship FIRE6.png" id="7_vd46y"]
+[ext_resource type="Texture2D" uid="uid://dofmbef4eeebw" path="res://assets/ship FIRE7.png" id="8_ylgef"]
+[ext_resource type="Texture2D" uid="uid://dsa0xhntdpmx0" path="res://assets/ship FIRE8.png" id="9_wklbt"]
+[ext_resource type="Texture2D" uid="uid://cveb1gn2fpyuv" path="res://assets/ship FIRE9.png" id="10_kkdot"]
+[ext_resource type="Texture2D" uid="uid://ct17l0at4a1nc" path="res://assets/ship FIRE10.png" id="11_rto3d"]
+
+[sub_resource type="Animation" id="Animation_h3hc1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_6fof3")]
+}
+
+[sub_resource type="Animation" id="Animation_r8nqo"]
+resource_name = "flame_down"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("7_vd46y"), ExtResource("8_ylgef"), ExtResource("9_wklbt"), ExtResource("10_kkdot"), ExtResource("11_rto3d")]
+}
+
+[sub_resource type="Animation" id="Animation_2aana"]
+resource_name = "flame_up"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("2_6fof3"), ExtResource("3_eosq1"), ExtResource("4_mar1y"), ExtResource("5_yaf5c"), ExtResource("6_406iu"), ExtResource("7_vd46y")]
+}
+
+[sub_resource type="Animation" id="Animation_0vr4s"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_6fof3")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_t00e2"]
+_data = {
+"RESET": SubResource("Animation_h3hc1"),
+"flame_down": SubResource("Animation_r8nqo"),
+"flame_up": SubResource("Animation_2aana"),
+"idle": SubResource("Animation_0vr4s")
+}
 
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(121, 59)
@@ -10,10 +90,16 @@ script = ExtResource("1_xmwdj")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_tl5xd")
+position = Vector2(1, 13)
+texture = ExtResource("2_6fof3")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-12, 2, 0, -26, 11, 2, 21, 5, 24, 16, 7, 17, 3, 23, -4, 23, -8, 17, -24, 16, -22, 5)
 
 [node name="LaserPoint" type="Marker2D" parent="."]
 position = Vector2(-0.42, -27.19)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_t00e2")
+}
