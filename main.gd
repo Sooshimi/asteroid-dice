@@ -19,7 +19,7 @@ var direction : float
 @onready var hud := $HUD
 @onready var player := $Player
 @onready var shoot_cooldown_timer := $ShootCooldownTimer
-@onready var start_position = $StartPosition
+@onready var start_position := $StartPosition
 
 func _ready():
 	new_game()

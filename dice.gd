@@ -9,7 +9,7 @@ var side_six := load("res://assets/dice/dice_6.png")
 
 var rolled_index : int
 var rolled_side : int
-var screen_size
+var screen_size : Vector2
 var dice_sides := [side_one, side_two, side_three, side_four, side_five, side_six]
 
 signal rolled_five
