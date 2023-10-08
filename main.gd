@@ -12,6 +12,8 @@ var meteor_safe_spawn : bool
 var direction : float
 var score : int
 var rolled_two : bool
+var initial_child_count : int
+var on_screen_meteor_count : int
 
 @onready var meteor_timer := $MeteorTimer
 @onready var meteor_spawn_location := $MeteorPath/MeteorSpawnLocation
@@ -25,6 +27,7 @@ var rolled_two : bool
 @onready var laser_point_right := $Player/LaserPointRight
 
 func _ready():
+	initial_child_count = get_child_count()
 	new_game()
 	hud.hide_new_game_button()
 
@@ -102,6 +105,8 @@ func _on_meteor_timer_timeout():
 	meteor.linear_velocity = velocity.rotated(direction) * multiply_meteor_velocity
 	
 	add_child(meteor)
+	
+	on_screen_meteor_count = get_child_count() - initial_child_count
 
 func _on_hud_new_game():
 	new_game()
@@ -128,3 +133,10 @@ func _on_dice_rolled_two():
 
 func _on_dice_rolled_non_two():
 	rolled_two = false
+
+func _on_dice_rolled_six():
+	score += on_screen_meteor_count
+	hud.update_score(score)
+
+func add_on_screen_meteor_count(num: int):
+	on_screen_meteor_count += num

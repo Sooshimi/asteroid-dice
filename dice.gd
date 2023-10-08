@@ -12,6 +12,7 @@ var rolled_side : int
 var screen_size : Vector2
 var dice_sides := [side_one, side_two, side_three, side_four, side_five, side_six]
 
+signal rolled_six
 signal rolled_five
 signal rolled_non_five
 signal rolled_four
@@ -36,6 +37,7 @@ func roll():
 		await roll_animation_timer.timeout
 	
 	if rolled_side == 6:
+		rolled_six.emit()
 		# All on-screen meteors get destroyed
 		get_tree().call_group("meteors", "queue_free")
 		rolled_non_five.emit()
@@ -71,6 +73,7 @@ func _on_body_entered(body):
 	
 	if body.name != "Player":
 		body.queue_free()
+		get_parent().add_on_screen_meteor_count(-1)
 		get_parent().score -= 1
 		get_parent().get_node("HUD").update_score(get_parent().score)
 

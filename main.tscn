@@ -30,9 +30,9 @@ grow_vertical = 2
 color = Color(0.0666667, 0.0666667, 0.0666667, 1)
 
 [node name="Dice" parent="." instance=ExtResource("4_1r4wt")]
-position = Vector2(204, 207)
+position = Vector2(401, 35)
 mass = 0.5
-linear_velocity = Vector2(100, 50)
+linear_velocity = Vector2(2.08165e-12, 100)
 
 [node name="Player" parent="." instance=ExtResource("1_fx3vb")]
 position = Vector2(405, 379)
@@ -70,6 +70,7 @@ shape = SubResource("CircleShape2D_oafe6")
 [connection signal="rolled_non_five" from="Dice" to="." method="_on_dice_rolled_non_five"]
 [connection signal="rolled_non_four" from="Dice" to="Player" method="_on_dice_rolled_non_four"]
 [connection signal="rolled_non_two" from="Dice" to="." method="_on_dice_rolled_non_two"]
+[connection signal="rolled_six" from="Dice" to="." method="_on_dice_rolled_six"]
 [connection signal="rolled_two" from="Dice" to="." method="_on_dice_rolled_two"]
 [connection signal="hit" from="Player" to="." method="game_over"]
 [connection signal="timeout" from="MeteorTimer" to="." method="_on_meteor_timer_timeout"]
