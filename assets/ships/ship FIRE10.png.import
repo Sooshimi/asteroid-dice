@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://qo5lso5vpwhh"
-path="res://.godot/imported/ship FIRE6.png-d02e449a0cebfab16a40ce1d1718e4fa.ctex"
+uid="uid://ct17l0at4a1nc"
+path="res://.godot/imported/ship FIRE10.png-61aff71728e287b62b446ca42ff79aa2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ship FIRE6.png"
-dest_files=["res://.godot/imported/ship FIRE6.png-d02e449a0cebfab16a40ce1d1718e4fa.ctex"]
+source_file="res://assets/ships/ship FIRE10.png"
+dest_files=["res://.godot/imported/ship FIRE10.png-61aff71728e287b62b446ca42ff79aa2.ctex"]
 
 [params]
 
