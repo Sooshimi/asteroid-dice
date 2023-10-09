@@ -14,6 +14,7 @@ var score : int
 var rolled_two : bool
 var initial_child_count : int
 var on_screen_meteor_count : int
+var stop_score_update := false
 
 @onready var meteor_timer := $MeteorTimer
 @onready var meteor_spawn_location := $MeteorPath/MeteorSpawnLocation
@@ -59,12 +60,17 @@ func game_over():
 	hud.show_new_game_button()
 	shoot_cooldown_timer.stop()
 	meteor_timer.stop()
+	stop_score_update = true
+
+func get_stop_score_update() -> bool:
+	return stop_score_update
 
 func new_game():
 	# Reset score
 	score = 0
 	hud.update_score(score)
 	hud.hide_new_game_button()
+	stop_score_update = false
 	
 	# Destroy all meteors and reset meteors back to default values
 	get_tree().call_group("meteors", "queue_free")
@@ -136,7 +142,8 @@ func _on_dice_rolled_non_two():
 
 func _on_dice_rolled_six():
 	score += on_screen_meteor_count
-	hud.update_score(score)
+	if !stop_score_update:
+		hud.update_score(score)
 
 func add_on_screen_meteor_count(num: int):
 	on_screen_meteor_count += num

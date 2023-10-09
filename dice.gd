@@ -74,8 +74,10 @@ func _on_body_entered(body):
 	if body.name != "Player":
 		body.queue_free()
 		get_parent().add_on_screen_meteor_count(-1)
-		get_parent().score -= 1
-		get_parent().get_node("HUD").update_score(get_parent().score)
+		if !get_parent().get_stop_score_update():
+			print("score updating")
+			get_parent().score -= 1
+			get_parent().get_node("HUD").update_score(get_parent().score)
 
 func screen_wrap(state):
 	state.transform.origin.x = wrapf(position.x, 0, screen_size.x)
