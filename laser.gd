@@ -6,8 +6,6 @@ extends Area2D
 var vector := Vector2.ZERO
 var score : int
 
-signal laser_hit_dice
-
 func _ready():
 	pass
 
@@ -22,8 +20,8 @@ func _on_body_entered(body):
 	queue_free()
 	
 	if body.name == "Dice":
-		laser_hit_dice.emit()
-		body.roll()
+		if body.roll_ready:
+			body.roll()
 	else:
 		body.hp -= 1
 		if body.hp == 0:

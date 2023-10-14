@@ -24,7 +24,6 @@ signal rolled_non_two
 @onready var dice_sprite := $Sprite2D
 @onready var roll_animation_timer := $RollAnimationTimer
 @onready var roll_cooldown_timer := $RollCooldownTimer
-var laser_node = get_tree().get_node("Laser")
 
 func _ready():
 	screen_size = get_viewport_rect().size
@@ -34,7 +33,6 @@ func _integrate_forces(state):
 	screen_wrap(state)
 
 func roll():
-	
 	if roll_ready:
 		roll_cooldown_timer.start()
 		roll_ready = false
