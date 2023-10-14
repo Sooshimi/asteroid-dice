@@ -24,6 +24,7 @@ signal rolled_non_two
 @onready var dice_sprite := $Sprite2D
 @onready var roll_animation_timer := $RollAnimationTimer
 @onready var roll_cooldown_timer := $RollCooldownTimer
+@onready var auto_roll_timer := $AutoRollTimer
 
 func _ready():
 	screen_size = get_viewport_rect().size
@@ -34,6 +35,7 @@ func _integrate_forces(state):
 
 func roll():
 	if roll_ready:
+		auto_roll_timer.start()
 		roll_cooldown_timer.start()
 		roll_ready = false
 	
@@ -91,3 +93,6 @@ func screen_wrap(state):
 
 func _on_dice_cooldown_timer_timeout():
 	roll_ready = true
+
+func _on_auto_roll_timer_timeout():
+	roll()

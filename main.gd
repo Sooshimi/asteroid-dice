@@ -26,6 +26,7 @@ var stop_score_update := false
 @onready var laser_point := $Player/LaserPoint
 @onready var laser_point_left := $Player/LaserPointLeft
 @onready var laser_point_right := $Player/LaserPointRight
+@onready var auto_roll_timer := $Dice/AutoRollTimer
 
 func _ready():
 	initial_child_count = get_child_count()
@@ -60,6 +61,7 @@ func game_over():
 	hud.show_new_game_button()
 	shoot_cooldown_timer.stop()
 	meteor_timer.stop()
+	auto_roll_timer.stop()
 	stop_score_update = true
 
 func get_stop_score_update() -> bool:
@@ -84,6 +86,9 @@ func new_game():
 	player.global_position = start_position.position
 	player.velocity = Vector2.ZERO
 	player.show()
+	
+	# Start dice auto roll timer
+	auto_roll_timer.start()
 
 func _on_meteor_timer_timeout():
 	# Create new instance of meteor
