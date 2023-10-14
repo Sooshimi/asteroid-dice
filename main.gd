@@ -98,7 +98,7 @@ func _on_meteor_timer_timeout():
 	meteor_spawn_location.progress_ratio = randf()
 	
 	meteor_safe_spawn_location.progress_ratio = meteor_spawn_location.progress_ratio
-
+	
 	# Set the direction of the meteor perpendicular to the path
 	direction = meteor_safe_spawn_location.rotation + PI/2
 	
