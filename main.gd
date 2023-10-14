@@ -122,6 +122,11 @@ func _on_meteor_timer_timeout():
 func _on_hud_new_game():
 	new_game()
 
+func _on_dice_rolled_six():
+	score += on_screen_meteor_count
+	if !stop_score_update:
+		hud.update_score(score)
+
 func _on_dice_rolled_five():
 	multiple_meteor_rotation_speed = 20
 	multiply_meteor_velocity = 2
@@ -132,23 +137,18 @@ func _on_dice_rolled_non_five():
 	multiply_meteor_velocity = 1
 	meteor_timer.wait_time = 1.5
 
-func _on_area_2d_body_entered(_body):
-	meteor_safe_spawn = false
-	meteor_safe_spawn_location.progress_ratio = randf()
-
-func _on_area_2d_body_exited(_body):
-	meteor_safe_spawn = true
-
 func _on_dice_rolled_two():
 	rolled_two = true
 
 func _on_dice_rolled_non_two():
 	rolled_two = false
 
-func _on_dice_rolled_six():
-	score += on_screen_meteor_count
-	if !stop_score_update:
-		hud.update_score(score)
+func _on_area_2d_body_entered(_body):
+	meteor_safe_spawn = false
+	meteor_safe_spawn_location.progress_ratio = randf()
+
+func _on_area_2d_body_exited(_body):
+	meteor_safe_spawn = true
 
 func add_on_screen_meteor_count(num: int):
 	on_screen_meteor_count += num
