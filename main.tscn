@@ -31,7 +31,7 @@ texture = ExtResource("4_wvjr3")
 
 [node name="Dice" parent="." instance=ExtResource("4_1r4wt")]
 position = Vector2(401, 35)
-mass = 0.5
+mass = 0.2
 linear_velocity = Vector2(2.08165e-12, 100)
 
 [node name="Player" parent="." instance=ExtResource("1_fx3vb")]
