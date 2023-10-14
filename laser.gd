@@ -20,7 +20,8 @@ func _on_body_entered(body):
 	queue_free()
 	
 	if body.name == "Dice":
-		body.roll()
+		if body.roll_ready:
+			body.roll()
 	else:
 		body.hp -= 1
 		if body.hp == 0:
