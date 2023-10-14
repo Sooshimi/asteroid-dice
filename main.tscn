@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://le2jdemvngim"]
+[gd_scene load_steps=10 format=3 uid="uid://le2jdemvngim"]
 
 [ext_resource type="PackedScene" uid="uid://cmhp4chgk5bty" path="res://player.tscn" id="1_fx3vb"]
 [ext_resource type="Script" path="res://main.gd" id="1_nvjsi"]
 [ext_resource type="PackedScene" uid="uid://da8ksrewxvin7" path="res://laser.tscn" id="2_6qfo2"]
 [ext_resource type="PackedScene" uid="uid://bfo8difbrh55q" path="res://meteor_l_2.tscn" id="3_usoxn"]
 [ext_resource type="PackedScene" uid="uid://dh6u2tcnu02yx" path="res://dice.tscn" id="4_1r4wt"]
+[ext_resource type="Texture2D" uid="uid://ba6xaic8y5cnn" path="res://assets/space_bg.png" id="4_wvjr3"]
 [ext_resource type="PackedScene" uid="uid://bjqqro1pksc61" path="res://hud.tscn" id="5_ut0wp"]
 
 [sub_resource type="Curve2D" id="Curve2D_5rl1v"]
@@ -21,13 +22,12 @@ script = ExtResource("1_nvjsi")
 laser_scene = ExtResource("2_6qfo2")
 meteor_scene = ExtResource("3_usoxn")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.0666667, 0.0666667, 0.0666667, 1)
+[node name="Background" type="TextureRect" parent="."]
+offset_right = 800.0
+offset_bottom = 800.0
+texture = ExtResource("4_wvjr3")
+
+[node name="HUD" parent="." instance=ExtResource("5_ut0wp")]
 
 [node name="Dice" parent="." instance=ExtResource("4_1r4wt")]
 position = Vector2(401, 35)
@@ -63,8 +63,7 @@ collision_mask = 8
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MeteorPath/MeteorSafeSpawnLoc/Area2D"]
 shape = SubResource("CircleShape2D_oafe6")
 
-[node name="HUD" parent="." instance=ExtResource("5_ut0wp")]
-
+[connection signal="new_game" from="HUD" to="." method="_on_hud_new_game"]
 [connection signal="rolled_five" from="Dice" to="." method="_on_dice_rolled_five"]
 [connection signal="rolled_four" from="Dice" to="Player" method="_on_dice_rolled_four"]
 [connection signal="rolled_non_five" from="Dice" to="." method="_on_dice_rolled_non_five"]
@@ -76,4 +75,3 @@ shape = SubResource("CircleShape2D_oafe6")
 [connection signal="timeout" from="MeteorTimer" to="." method="_on_meteor_timer_timeout"]
 [connection signal="body_entered" from="MeteorPath/MeteorSafeSpawnLoc/Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="MeteorPath/MeteorSafeSpawnLoc/Area2D" to="." method="_on_area_2d_body_exited"]
-[connection signal="new_game" from="HUD" to="." method="_on_hud_new_game"]
