@@ -3,7 +3,7 @@ extends Area2D
 @onready var main := get_parent()
 @onready var hud := main.get_node("HUD")
 @onready var dice := main.get_node("Dice")
-@export var speed := 200
+@export var speed := 1500
 
 var vector := Vector2.ZERO
 var score : int
@@ -14,7 +14,7 @@ func _ready():
 	screen_size = get_viewport_rect().size
 
 func _process(delta):
-	vector.y -= 1
+	vector.y = -1
 	position += vector.rotated(rotation) * speed * delta
 	
 	if dice.rolled_three:
