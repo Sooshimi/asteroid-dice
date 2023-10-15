@@ -29,6 +29,8 @@ texture = ExtResource("4_wvjr3")
 
 [node name="HUD" parent="." instance=ExtResource("5_ut0wp")]
 
+[node name="DiceStartPosition" type="Marker2D" parent="."]
+
 [node name="Dice" parent="." instance=ExtResource("4_1r4wt")]
 position = Vector2(401, 35)
 mass = 0.2
@@ -63,6 +65,7 @@ collision_mask = 8
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MeteorPath/MeteorSafeSpawnLoc/Area2D"]
 shape = SubResource("CircleShape2D_oafe6")
 
+[connection signal="reset_game" from="." to="Dice" method="_on_main_reset_game"]
 [connection signal="new_game" from="HUD" to="." method="_on_hud_new_game"]
 [connection signal="rolled_five" from="Dice" to="." method="_on_dice_rolled_five"]
 [connection signal="rolled_four" from="Dice" to="Player" method="_on_dice_rolled_four"]

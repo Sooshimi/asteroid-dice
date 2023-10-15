@@ -12,6 +12,7 @@ var rolled_side : int
 var screen_size : Vector2
 var dice_sides := [side_one, side_two, side_three, side_four, side_five, side_six]
 var roll_ready : bool
+var reset_game : bool
 
 signal rolled_six
 signal rolled_five
@@ -25,6 +26,7 @@ signal rolled_non_two
 @onready var roll_animation_timer := $RollAnimationTimer
 @onready var roll_cooldown_timer := $RollCooldownTimer
 @onready var auto_roll_timer := $AutoRollTimer
+@onready var dice := $Dice
 
 func _ready():
 	screen_size = get_viewport_rect().size
@@ -32,6 +34,11 @@ func _ready():
 
 func _integrate_forces(state):
 	screen_wrap(state)
+	
+	if reset_game:
+		state.transform = Transform2D(180, Vector2(400,100))
+		linear_velocity = Vector2(0,100)
+		reset_game = false
 
 func roll():
 	if roll_ready:
@@ -96,3 +103,6 @@ func _on_dice_cooldown_timer_timeout():
 
 func _on_auto_roll_timer_timeout():
 	roll()
+
+func _on_main_reset_game():
+	reset_game = true

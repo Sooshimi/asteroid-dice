@@ -16,6 +16,8 @@ var initial_child_count : int
 var on_screen_meteor_count : int
 var stop_score_update := false
 
+signal reset_game
+
 @onready var meteor_timer := $MeteorTimer
 @onready var meteor_spawn_location := $MeteorPath/MeteorSpawnLocation
 @onready var meteor_safe_spawn_location := $MeteorPath/MeteorSafeSpawnLoc
@@ -68,6 +70,8 @@ func get_stop_score_update() -> bool:
 	return stop_score_update
 
 func new_game():
+	reset_game.emit()
+	
 	# Reset score
 	score = 0
 	hud.update_score(score)
