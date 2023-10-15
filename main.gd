@@ -55,9 +55,9 @@ func fire_laser():
 		laser_one.rotation = laser_point_left.global_rotation
 		laser_two.position = laser_point_right.global_position
 		laser_two.rotation = laser_point_right.global_rotation
-		laser.speed = 100
-		laser_one.speed = 100
-		laser_two.speed = 100
+		laser.speed = 1000
+		laser_one.speed = 1000
+		laser_two.speed = 1000
 		add_child(laser_one)
 		add_child(laser_two)
 	if dice.rolled_three:
