@@ -13,6 +13,7 @@ var screen_size : Vector2
 var dice_sides := [side_one, side_two, side_three, side_four, side_five, side_six]
 var roll_ready : bool
 var reset_game : bool
+var rolled_three : bool
 
 signal rolled_six
 signal rolled_five
@@ -59,17 +60,21 @@ func roll():
 			rolled_non_five.emit()
 			rolled_non_four.emit()
 			rolled_non_two.emit()
+			rolled_three = false
 		if rolled_side == 5:
 			# Meteors on (a)steroids
 			rolled_five.emit()
 			rolled_non_four.emit()
 			rolled_non_two.emit()
+			rolled_three = false
 		if rolled_side == 4:
 			# Revert player controls
 			rolled_four.emit()
 			rolled_non_five.emit()
 			rolled_non_two.emit()
+			rolled_three = false
 		if rolled_side == 3:
+			rolled_three = true
 			rolled_non_five.emit()
 			rolled_non_four.emit()
 			rolled_non_two.emit()
@@ -78,11 +83,13 @@ func roll():
 			rolled_non_five.emit()
 			rolled_non_four.emit()
 			rolled_two.emit()
+			rolled_three = false
 		if rolled_side == 1:
 			# Default
 			rolled_non_five.emit()
 			rolled_non_four.emit()
 			rolled_non_two.emit()
+			rolled_three = false
 
 func _on_body_entered(body):
 	roll()

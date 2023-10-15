@@ -29,6 +29,8 @@ signal reset_game
 @onready var laser_point_left := $Player/LaserPointLeft
 @onready var laser_point_right := $Player/LaserPointRight
 @onready var auto_roll_timer := $Dice/AutoRollTimer
+@onready var dice := $Dice
+@onready var laser_timer := $LaserTimer
 
 func _ready():
 	initial_child_count = get_child_count()
@@ -58,6 +60,11 @@ func fire_laser():
 		laser_two.speed = 100
 		add_child(laser_one)
 		add_child(laser_two)
+	if dice.rolled_three:
+		laser_timer.start()
+		await laser_timer.timeout
+		if is_instance_valid(laser):
+			laser.queue_free()
 
 func game_over():
 	hud.show_new_game_button()
