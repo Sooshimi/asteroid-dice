@@ -1,13 +1,101 @@
-[gd_scene load_steps=4 format=3 uid="uid://bfo8difbrh55q"]
+[gd_scene load_steps=10 format=3 uid="uid://bfo8difbrh55q"]
 
 [ext_resource type="Script" path="res://meteor_l_2.gd" id="1_1jj5r"]
-[ext_resource type="Texture2D" uid="uid://yb21qgjha1bh" path="res://assets/meteors/meteorLarge2.png" id="2_x4iew"]
+[ext_resource type="Texture2D" uid="uid://cewj02uxjgany" path="res://assets/meteors/meteor_2_spritesheet.png" id="2_0gwma"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x8hy7"]
 radius = 52.0
 height = 116.0
 
-[node name="MeteorL2" type="RigidBody2D" groups=["meteors"]]
+[sub_resource type="Animation" id="Animation_2n03p"]
+resource_name = "destroy_1"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 2, 3, 4, 5, 6, 7, 8]
+}
+
+[sub_resource type="Animation" id="Animation_amvut"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_ftlo7"]
+resource_name = "destroy_2"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 2, 3, 4, 5, 6, 7, 8]
+}
+
+[sub_resource type="Animation" id="Animation_p5572"]
+resource_name = "idle_1"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_emg6i"]
+resource_name = "idle_2"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ai7lq"]
+_data = {
+"RESET": SubResource("Animation_amvut"),
+"destroy_1": SubResource("Animation_2n03p"),
+"destroy_2": SubResource("Animation_ftlo7"),
+"idle_1": SubResource("Animation_p5572"),
+"idle_2": SubResource("Animation_emg6i")
+}
+
+[node name="Meteor" type="RigidBody2D" groups=["meteors"]]
 collision_layer = 4
 collision_mask = 15
 mass = 0.5
@@ -17,7 +105,9 @@ metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-2, -2)
-texture = ExtResource("2_x4iew")
+texture = ExtResource("2_0gwma")
+hframes = 9
+frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_x8hy7")
@@ -26,4 +116,11 @@ shape = SubResource("CapsuleShape2D_x8hy7")
 position = Vector2(-0.499998, -0.499998)
 scale = Vector2(4.75, 4.75)
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath(".")
+libraries = {
+"": SubResource("AnimationLibrary_ai7lq")
+}
+
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
