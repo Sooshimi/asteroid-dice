@@ -9,6 +9,7 @@ var vector := Vector2.ZERO
 var score : int
 
 @onready var screen_size : Vector2
+@onready var destroy_meteor_anim_timer := $DestroyMeteorAnimTimer
 
 func _ready():
 	screen_size = get_viewport_rect().size
@@ -34,7 +35,11 @@ func _on_body_entered(body):
 		if body.hp == 0:
 			main.score += 1
 			hud.update_score(main.score)
-			body.queue_free()
+			
+			if body.meteor_sprite == 1:
+				body.animation_player.play("destroy_1")
+			else:
+				body.animation_player.play("destroy_2")
 
 func screen_wrap():
 	position.x = wrapf(position.x, 0, screen_size.x)

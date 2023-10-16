@@ -56,7 +56,12 @@ func roll():
 		if rolled_side == 6:
 			rolled_six.emit()
 			# All on-screen meteors get destroyed
-			get_tree().call_group("meteors", "queue_free")
+			var meteors = get_tree().get_nodes_in_group("meteors")
+			for meteor in meteors:
+				if meteor.meteor_sprite == 1:
+					meteor.animation_player.play("destroy_1")
+				else:
+					meteor.animation_player.play("destroy_2")
 			rolled_non_five.emit()
 			rolled_non_four.emit()
 			rolled_non_two.emit()
@@ -95,7 +100,11 @@ func _on_body_entered(body):
 	roll()
 	
 	if body.name != "Player":
-		body.queue_free()
+		if body.meteor_sprite == 1:
+			body.animation_player.play("destroy_1")
+		else:
+			body.animation_player.play("destroy_2")
+		
 		get_parent().add_on_screen_meteor_count(-1)
 		if !get_parent().get_stop_score_update():
 			get_parent().score -= 1

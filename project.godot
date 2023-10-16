@@ -22,6 +22,10 @@ window/size/viewport_height=800
 window/size/always_on_top=true
 window/stretch/mode="canvas_items"
 
+[editor]
+
+movie_writer/movie_file="/Users/Mason/Desktop/godot_recording.avi"
+
 [input]
 
 turn_right={
