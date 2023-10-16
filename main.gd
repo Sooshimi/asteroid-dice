@@ -140,9 +140,9 @@ func _on_dice_rolled_six():
 		hud.update_score(score)
 
 func _on_dice_rolled_five():
-	multiple_meteor_rotation_speed = 20
-	multiply_meteor_velocity = 2
-	meteor_timer.wait_time = 0.5
+	multiple_meteor_rotation_speed = 10
+	multiply_meteor_velocity = 1.5
+	meteor_timer.wait_time = 0.75
 
 func _on_dice_rolled_non_five():
 	multiple_meteor_rotation_speed = 1
