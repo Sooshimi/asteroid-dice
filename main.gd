@@ -43,8 +43,8 @@ signal reset_game
 
 func _ready():
 	initial_child_count = get_child_count()
-	new_game()
 	hud.hide_new_game_button()
+	new_game()
 
 func _process(delta):
 	if player.is_visible_in_tree() && Input.is_action_pressed("shoot") && shoot_cooldown_timer.is_stopped():
@@ -159,6 +159,7 @@ func _on_meteor_timer_timeout():
 
 func _on_hud_new_game():
 	new_game()
+	player.collision_polygon.set_deferred("disabled", false)
 
 func _on_dice_rolled_six():
 	score += on_screen_meteor_count

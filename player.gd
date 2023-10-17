@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 @onready var animation_player := $AnimationPlayer
+@onready var collision_polygon := $Area2D/CollisionPolygon2D
 @export var speed := 10
 @export var max_speed := 300
 @export var rotation_speed := 5
@@ -57,6 +58,5 @@ func _on_dice_rolled_non_four():
 
 func _on_area_2d_body_entered(body):
 	hit.emit()
+	collision_polygon.set_deferred("disabled", true)
 	hide()
-	collision_mask = 0
-	collision_layer = 0

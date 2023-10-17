@@ -36,8 +36,7 @@ func _on_body_entered(body):
 		meteor_hit.emit()
 		body.hp -= 1
 		if body.hp == 0:
-			body.collision_mask = 0
-			body.collision_layer = 0
+			body.collision_shape.set_deferred("disabled", true)
 			main.score += 1
 			hud.update_score(main.score)
 			

@@ -5,6 +5,7 @@ extends RigidBody2D
 var meteor_sprite : int
 
 @onready var animation_player := $AnimationPlayer
+@onready var collision_shape := $CollisionShape2D
 
 func _ready():
 	meteor_sprite = randi() % 2

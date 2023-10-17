@@ -89,9 +89,6 @@ collision_mask = 12
 script = ExtResource("1_xmwdj")
 metadata/_edit_group_ = true
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-12, 2, 0, -26, 11, 2, 21, 5, 24, 16, 7, 17, 3, 23, -4, 23, -8, 17, -24, 16, -22, 5)
-
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(1, 13)
 texture = ExtResource("2_l8d7q")
@@ -114,8 +111,9 @@ libraries = {
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_mask = 12
+monitorable = false
 
-[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Area2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
 polygon = PackedVector2Array(-12, 2, 0, -26, 11, 2, 21, 5, 24, 16, 7, 17, 3, 23, -4, 23, -8, 17, -24, 16, -22, 5)
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
