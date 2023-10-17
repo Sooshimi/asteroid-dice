@@ -15,6 +15,8 @@ var rolled_two : bool
 var initial_child_count : int
 var on_screen_meteor_count : int
 var stop_score_update := false
+var shake_amount := 125.0
+var shake_screen : bool
 
 signal reset_game
 
@@ -31,15 +33,30 @@ signal reset_game
 @onready var auto_roll_timer := $Dice/AutoRollTimer
 @onready var dice := $Dice
 @onready var laser_timer := $LaserTimer
+@onready var camera := $Camera2D
+@onready var screen_shake_timer := $ScreenShakeTimer
 
 func _ready():
 	initial_child_count = get_child_count()
 	new_game()
 	hud.hide_new_game_button()
 
-func _process(_delta):
+func _process(delta):
 	if player.is_visible_in_tree() && Input.is_action_pressed("shoot") && shoot_cooldown_timer.is_stopped():
 		fire_laser()
+	
+	if shake_screen && !screen_shake_timer.is_stopped():
+		screen_shake(delta)
+
+func screen_shake(delta):
+	camera.set_offset(Vector2(\
+	randf_range(-1.0, 1.0) * shake_amount * delta,\
+	randf_range(-1.0, 1.0) * shake_amount * delta))
+
+# 'meteor_hit' signal connected from laser scene
+func _on_meteor_hit():
+	screen_shake_timer.start()
+	shake_screen = true
 
 func fire_laser():
 	shoot_cooldown_timer.start()

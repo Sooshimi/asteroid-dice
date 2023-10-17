@@ -25,7 +25,13 @@ meteor_scene = ExtResource("3_usoxn")
 [node name="Background" type="TextureRect" parent="."]
 offset_right = 800.0
 offset_bottom = 800.0
+size_flags_horizontal = 4
 texture = ExtResource("4_wvjr3")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(400, 400)
+offset = Vector2(2.08165e-12, 2.08165e-12)
+zoom = Vector2(1.01, 1.01)
 
 [node name="HUD" parent="." instance=ExtResource("5_ut0wp")]
 
@@ -48,6 +54,10 @@ wait_time = 1.5
 
 [node name="LaserTimer" type="Timer" parent="."]
 wait_time = 0.6
+one_shot = true
+
+[node name="ScreenShakeTimer" type="Timer" parent="."]
+wait_time = 0.15
 one_shot = true
 
 [node name="StartPosition" type="Marker2D" parent="."]
