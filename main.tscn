@@ -11,7 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://wxsy7y576mtd" path="res://assets/audio/explosion2.ogg" id="9_708b2"]
 [ext_resource type="AudioStream" uid="uid://dktdisi361jg1" path="res://assets/audio/gameover4.ogg" id="10_jayk5"]
 [ext_resource type="AudioStream" uid="uid://ifsbf4cx7023" path="res://assets/audio/impactMining_004.ogg" id="11_d2mey"]
-[ext_resource type="AudioStream" uid="uid://d4iu7a4h35mmp" path="res://assets/audio/coin5.ogg" id="12_gn8qe"]
+[ext_resource type="AudioStream" uid="uid://b37pvffghetev" path="res://assets/audio/chipLay1.ogg" id="12_mchxf"]
 
 [sub_resource type="Curve2D" id="Curve2D_5rl1v"]
 _data = {
@@ -126,8 +126,7 @@ volume_db = -5.0
 stream = ExtResource("11_d2mey")
 
 [node name="DiceRoll" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("12_gn8qe")
-volume_db = -10.0
+stream = ExtResource("12_mchxf")
 
 [connection signal="reset_game" from="." to="Dice" method="_on_main_reset_game"]
 [connection signal="new_game" from="HUD" to="." method="_on_hud_new_game"]
