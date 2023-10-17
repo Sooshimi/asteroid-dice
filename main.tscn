@@ -109,6 +109,7 @@ autoplay = true
 
 [node name="Laser" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_blvel")
+pitch_scale = 0.8
 
 [node name="Explosion" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("9_708b2")
@@ -120,13 +121,14 @@ volume_db = -5.0
 
 [node name="GameOver" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("10_jayk5")
-volume_db = -5.0
+volume_db = -8.0
 
 [node name="DiceHit" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("11_d2mey")
 
 [node name="DiceRoll" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("12_mchxf")
+volume_db = 2.0
 
 [connection signal="reset_game" from="." to="Dice" method="_on_main_reset_game"]
 [connection signal="new_game" from="HUD" to="." method="_on_hud_new_game"]
