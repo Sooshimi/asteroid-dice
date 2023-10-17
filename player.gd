@@ -7,6 +7,7 @@ extends CharacterBody2D
 var rotation_direction := 0.0
 var screen_size : Vector2
 var rolled_four : bool
+
 signal hit
 
 func _ready():
@@ -20,8 +21,10 @@ func get_input():
 	if velocity.y == 0:
 		animation_player.play("idle")
 	elif Input.is_action_just_pressed("forward"):
+		get_parent().engine.play()
 		animation_player.play("flame_up")
 	elif Input.is_action_just_released("forward"):
+		get_parent().engine.stop()
 		animation_player.play("flame_down")
 	
 	# Get rotation direction (outputs - or +)
@@ -38,12 +41,7 @@ func _process(delta):
 	get_input()
 	
 	rotation += rotation_direction * rotation_speed * delta
-	var collision := move_and_collide(velocity * delta, false, 0.00)
-	
-	# If player hits something, destroy it
-	if collision:
-		hit.emit()
-		hide()
+	move_and_collide(velocity * delta, false, 0.00)
 	
 	screen_wrap()
 
@@ -56,3 +54,9 @@ func _on_dice_rolled_four():
 
 func _on_dice_rolled_non_four():
 	rolled_four = false
+
+func _on_area_2d_body_entered(body):
+	hit.emit()
+	hide()
+	collision_mask = 0
+	collision_layer = 0

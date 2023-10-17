@@ -47,6 +47,7 @@ func roll():
 		roll_ready = false
 	
 		for i in 5:
+			get_parent().dice_roll_sound.play()
 			rolled_index = randi() % dice_sides.size()
 			rolled_side = rolled_index + 1
 			dice_sprite.texture = dice_sides[rolled_index]
@@ -96,6 +97,7 @@ func roll():
 			rolled_three = false
 
 func _on_body_entered(body):
+	get_parent().dice_hit_sound.play()
 	roll()
 	
 	if body.name != "Player":

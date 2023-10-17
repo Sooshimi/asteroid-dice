@@ -34,6 +34,12 @@ signal reset_game
 @onready var laser_timer := $LaserTimer
 @onready var camera := $Camera2D
 @onready var screen_shake_timer := $ScreenShakeTimer
+@onready var laser_sound := $Laser
+@onready var explosion := $Explosion
+@onready var engine := $Engine
+@onready var game_over_sound := $GameOver
+@onready var dice_hit_sound := $DiceHit
+@onready var dice_roll_sound := $DiceRoll
 
 func _ready():
 	initial_child_count = get_child_count()
@@ -46,6 +52,8 @@ func _process(delta):
 	
 	if !screen_shake_timer.is_stopped():
 		screen_shake(delta)
+	else:
+		camera.set_offset(Vector2.ZERO)
 
 func screen_shake(delta):
 	camera.set_offset(Vector2(\
@@ -54,9 +62,11 @@ func screen_shake(delta):
 
 # 'meteor_hit' signal connected from laser scene
 func _on_meteor_hit():
+	explosion.play()
 	screen_shake_timer.start()
 
 func fire_laser():
+	laser_sound.play()
 	shoot_cooldown_timer.start()
 	var laser := laser_scene.instantiate()
 	laser.position = laser_point.global_position
@@ -82,6 +92,7 @@ func fire_laser():
 			laser.queue_free()
 
 func game_over():
+	game_over_sound.play()
 	hud.show_new_game_button()
 	shoot_cooldown_timer.stop()
 	meteor_timer.stop()
@@ -156,7 +167,7 @@ func _on_dice_rolled_six():
 
 func _on_dice_rolled_five():
 	multiple_meteor_rotation_speed = 10
-	multiply_meteor_velocity = 1.5
+	multiply_meteor_velocity = 2
 	meteor_timer.wait_time = 0.75
 
 func _on_dice_rolled_non_five():

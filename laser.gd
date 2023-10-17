@@ -29,6 +29,7 @@ func _on_body_entered(body):
 	queue_free()
 	
 	if body.name == "Dice":
+		get_parent().dice_hit_sound.play()
 		if body.roll_ready:
 			body.roll()
 	else:
