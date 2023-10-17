@@ -36,8 +36,8 @@ func _integrate_forces(state):
 	screen_wrap(state)
 	
 	if reset_game:
-		state.transform = Transform2D(180, Vector2(400,100))
-		linear_velocity = Vector2(25,50)
+		state.transform = Transform2D(180, Vector2(randi_range(200,600), randi_range(50,300)))
+		linear_velocity = Vector2(randi_range(-100,100), randi_range(20,100))
 		reset_game = false
 
 func roll():
