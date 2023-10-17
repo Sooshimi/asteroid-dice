@@ -39,6 +39,7 @@ func _integrate_forces(state):
 		state.transform = Transform2D(180, Vector2(randi_range(200,600), randi_range(50,300)))
 		linear_velocity = Vector2(randi_range(-100,100), randi_range(20,100))
 		reset_game = false
+		dice_sprite.texture = dice_sides[0]
 
 func roll():
 	if roll_ready:
