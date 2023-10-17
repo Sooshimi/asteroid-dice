@@ -40,7 +40,7 @@ zoom = Vector2(1.01, 1.01)
 [node name="Dice" parent="." instance=ExtResource("4_1r4wt")]
 position = Vector2(401, 35)
 mass = 0.2
-linear_velocity = Vector2(2.08165e-12, 100)
+linear_velocity = Vector2(2.08165e-12, 2.08165e-12)
 
 [node name="Player" parent="." instance=ExtResource("1_fx3vb")]
 position = Vector2(405, 379)

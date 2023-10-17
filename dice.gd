@@ -27,7 +27,6 @@ signal rolled_non_two
 @onready var roll_animation_timer := $RollAnimationTimer
 @onready var roll_cooldown_timer := $RollCooldownTimer
 @onready var auto_roll_timer := $AutoRollTimer
-@onready var dice := $Dice
 
 func _ready():
 	screen_size = get_viewport_rect().size
@@ -38,7 +37,7 @@ func _integrate_forces(state):
 	
 	if reset_game:
 		state.transform = Transform2D(180, Vector2(400,100))
-		linear_velocity = Vector2(0,100)
+		linear_velocity = Vector2(25,50)
 		reset_game = false
 
 func roll():
