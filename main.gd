@@ -127,6 +127,7 @@ func new_game():
 	# Start dice auto roll timer
 	auto_roll_timer.start()
 	dice.rolled_three = false
+	player.rolled_four = false
 
 func _on_meteor_timer_timeout():
 	# Create new instance of meteor
