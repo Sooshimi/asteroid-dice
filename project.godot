@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 window/size/viewport_width=800
 window/size/viewport_height=800
+window/size/mode=3
 window/size/always_on_top=true
 window/stretch/mode="canvas_items"
 
@@ -61,4 +62,5 @@ shoot={
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="mobile"
