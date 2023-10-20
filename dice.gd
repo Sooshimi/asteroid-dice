@@ -6,11 +6,18 @@ var side_three := load("res://assets/dice/dice_3.png")
 var side_four := load("res://assets/dice/dice_4.png")
 var side_five := load("res://assets/dice/dice_5.png")
 var side_six := load("res://assets/dice/dice_6.png")
+var grey_side_one := load("res://assets/dice/dice_decorated_1.png")
+var grey_side_two := load("res://assets/dice/dice_decorated_2.png")
+var grey_side_three := load("res://assets/dice/dice_decorated_3.png")
+var grey_side_four := load("res://assets/dice/dice_decorated_4.png")
+var grey_side_five := load("res://assets/dice/dice_decorated_5.png")
+var grey_side_six := load("res://assets/dice/dice_decorated_6.png")
 
 var rolled_index : int
 var rolled_side : int
 var screen_size : Vector2
 var dice_sides := [side_one, side_two, side_three, side_four, side_five, side_six]
+var grey_dice_sides := [grey_side_one, grey_side_two, grey_side_three, grey_side_four, grey_side_five, grey_side_six]
 var roll_ready : bool
 var reset_game : bool
 var rolled_three : bool
@@ -51,7 +58,10 @@ func roll():
 			get_parent().dice_roll_sound.play()
 			rolled_index = randi() % dice_sides.size()
 			rolled_side = rolled_index + 1
-			dice_sprite.texture = dice_sides[rolled_index]
+			if i < 4:
+				dice_sprite.texture = dice_sides[rolled_index]
+			else:
+				dice_sprite.texture = grey_dice_sides[rolled_index]
 			await roll_animation_timer.timeout
 		
 		if rolled_side == 6:
@@ -117,6 +127,7 @@ func screen_wrap(state):
 	state.transform.origin.y = wrapf(position.y, 0, screen_size.y)
 
 func _on_dice_cooldown_timer_timeout():
+	dice_sprite.texture = dice_sides[rolled_index]
 	roll_ready = true
 
 func _on_auto_roll_timer_timeout():
