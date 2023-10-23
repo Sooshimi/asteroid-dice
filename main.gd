@@ -41,6 +41,10 @@ signal reset_game
 @onready var dice_hit_sound := $DiceHit
 @onready var dice_roll_sound := $DiceRoll
 
+func _input(event):
+	if event.is_action_pressed("escape"):
+		get_tree().quit()
+
 func _ready():
 	initial_child_count = get_child_count()
 	hud.hide_new_game_button()
